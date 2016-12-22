@@ -8,16 +8,16 @@ import { SettingsModule } from "./settings/settings.module";
 
 import { AppComponent } from './app.component';
 import { SettingsComponent } from './settings/settings.component';
-import { IssuesComponent } from './issues/issues.component';
 import { NotFound404Component } from "./not-found404/not-found404.component";
 
 import { routing } from "./app.routes";
+import { GithubIssuesComponent } from './github/github-issues/github-issues.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IssuesComponent,
     NotFound404Component,
+    GithubIssuesComponent,
   ],
   imports: [
     BrowserModule,
