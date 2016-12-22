@@ -11,13 +11,12 @@ import { SettingsComponent } from './settings/settings.component';
 import { NotFound404Component } from "./not-found404/not-found404.component";
 
 import { routing } from "./app.routes";
-import { GithubIssuesComponent } from './github/github-issues/github-issues.component';
+import { GithubIssuesModule } from './github/github-issues/github-issues.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFound404Component,
-    GithubIssuesComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +24,7 @@ import { GithubIssuesComponent } from './github/github-issues/github-issues.comp
     HttpModule,
     SettingsModule,
     routing,
+    GithubIssuesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

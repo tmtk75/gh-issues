@@ -1,3 +1,73 @@
-<p>
-  github-issues works!
-</p>
+<form #f="ngForm" [formGroup]="form">
+  <input class="form-control input-block"
+    formControlName="query"
+    #input (keyup.enter)="onEnterQuery(input.value)" />
+</form>
+<li *ngFor="let issue of issues" class="issue">
+  <label class="issue-list-cell cb">
+    <input type="checkbox"
+      class="cb"
+      value={{issue.id}}
+      />
+  </label>
+  <div class="issue-list-cell icon">
+    <a href="#"
+      aria-label="View all issues"
+      class="tooltipped tooltipped-n">
+      <svg version="1.1" width="14" height="16" viewBox="0 0 14 16" class="octicon octicon-issue-opened" aria-hidden="true">
+        <use xlink:href="#issue-opened" />
+      </svg>
+    </a>
+  </div>
+  <div class="issue-list-cell title">
+    <a [href]="issue.html_url"
+      target="issue"
+      className="link">{{issue.title}}</a>
+    <div class="issue-meta text-small">
+      <span class="issue-meta-section opened-by">
+        <a href={{issue.repository.html_url}} target="repository" class="muted-link">{{issue.repository.name}}</a>
+        #{{issue.number}}
+        &nbsp;opened&nbsp;
+        <time dateTime={{issue.created_at}}
+          htmlIs="relative-time">{{issue.created_at}}</time> by&nbsp;
+        <a href="#"
+          (click)="onClick(issue)"
+          [attr.aria-label]="'View all issues opened by ' + issue.user.login"
+          class="tooltipped tooltipped-s muted-link">
+          {{issue.user.login}}
+        </a>
+      </span>
+    </div>
+  </div>
+  <div class="issue-list-cell avatar">
+    <a [href]="'https://github.com/issues?q=assignee%3A' + issue.user.login + '+is%3Aopen'"
+      target="https://github.com/issues"
+      [attr.aria-label]="'View everything assigned to ' + issue.user.login"
+      class="tooltipped tooltipped-n">
+      <img [alt]="'@' + issue.user.login"
+        data-user="" width="20" height="20"
+        [src]="issue.user.avatar_url + '&amp;s=32'"
+        />
+    </a>
+    <span *ngIf="issue.assignee">
+      <a [href]="'https://github.com/issues?q=assignee%3A' + issue.assignee.login + '+is%3Aopen'"
+        target="https://github.com/issues"
+        [attr.aria-label]="'View everything assigned to ' + issue.assignee.login"
+        class="tooltipped tooltipped-n">
+        <img [alt]="'@' + issue.assignee.login"
+          data-user="" width="20" height="20"
+          [src]="issue.assignee.avatar_url + '&amp;s=32'"
+          />
+      </a>
+    </span>
+  </div>
+  <div class="issue-list-cell comment">
+    <a href="" class="muted-link">
+      <svg version="1.1" width="16" height="16" viewBox="0 0 16 16" class="octicon octicon-comment" aria-hidden="true">
+        <use xlink:href="#comment" />
+      </svg>
+      <span class="text-small text-bold">{{issue.comments}}</span>
+    </a>
+  </div>
+</li>
+
