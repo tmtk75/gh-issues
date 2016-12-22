@@ -1,8 +1,13 @@
-<p>
-  settings works!
-</p>
-<ul>
-  <li><a routerLink="account">Account</a></li>
-  <li><a routerLink="security">Security</a></li>
-</ul>
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="columns">
+    <div class="one-fifth column">
+      <ul>
+        <li><a routerLink="account">Account</a></li>
+        <li><a routerLink="security">Security</a></li>
+      </ul>
+    </div>
+    <div class="four-fifths column">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
