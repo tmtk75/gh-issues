@@ -9,7 +9,7 @@ import { GithubIssuesService } from "../github-issues.service";
 @Component({
   selector: 'github-issues',
   templateUrl: './github-issues.component.html',
-  styleUrls: ['./github-issues.component.css']
+  styleUrls: ['./github-issues.component.sass']
 })
 export class GithubIssuesComponent implements OnInit {
 
