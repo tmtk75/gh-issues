@@ -10,6 +10,7 @@ const appRoutes: Routes = [
         path: "settings",
         component: SettingsComponent,
         children: [
+            //{path: "", redirectTo: "account", pathMatch: 'full'},
             {path: "account", component: AccountComponent},
             {path: "security", component: SecurityComponent},
         ]
