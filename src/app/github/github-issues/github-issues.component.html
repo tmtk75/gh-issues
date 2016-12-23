@@ -3,7 +3,7 @@
     formControlName="query"
     #input (keyup.enter)="onEnterQuery(input.value)" />
 </form>
-<li *ngFor="let issue of issues" class="issue">
+<li *ngFor="let issue of issues" class="github-issue">
   <github-issue [issue]="issue"></github-issue>
 </li>
 
