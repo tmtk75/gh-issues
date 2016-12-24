@@ -65,4 +65,9 @@
       <span class="text-small text-bold">{{issue.comments}}</span>
     </a>
   </div>
+  <div class="issue-list-cell labels">
+    <li *ngFor="let label of issue.labels">
+      <span class="label" [ngStyle]="{backgroundColor: '#' + label.color, color: labelColor(label.color)}">{{label.name}}</span>
+    </li>
+  </div>
 </span>

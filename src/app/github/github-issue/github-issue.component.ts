@@ -1,3 +1,5 @@
+import * as Color from "color";
+
 import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/core';
 
@@ -32,5 +34,11 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
 
   private onChange(src: HTMLInputElement, issue: GithubIssue): void {
     this.select.emit({selected: src.checked, issue});
+  }
+
+  private labelColor(hexColor: string): string {
+    const c = Color('#' + hexColor);
+    console.log(c.hsl())
+    return c.hsl().l < 50 ? "white" : "#1c2733";
   }
 }
