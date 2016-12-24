@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute, Params } from "@angular/router"
 
 import { GithubIssue } from "../github-issue";
-
+import { GithubIssueEvent } from "../github-issue/github-issue-event"
 import { GithubIssuesService } from "../github-issues.service";
 
 @Component({
@@ -55,4 +55,7 @@ export class GithubIssuesComponent implements OnInit {
       .subscribe(it => this.issues = it)
   }
 
+  private onSelect(e: GithubIssueEvent): void {
+    console.log(e);
+  }
 }

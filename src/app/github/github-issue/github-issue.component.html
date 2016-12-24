@@ -3,6 +3,7 @@
     <input type="checkbox"
       class="cb"
       value={{issue.id}}
+      #cb (change)="onChange(cb, issue)"
       />
   </label>
   <div class="issue-list-cell icon">

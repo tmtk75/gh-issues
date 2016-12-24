@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/core';
 
 import { GithubIssue } from "../github-issue"
@@ -18,13 +18,19 @@ const fadeIn = trigger('fadeInState', [
 })
 export class GithubIssueComponent implements OnInit, AfterViewInit {
 
-  @Input() issue: GithubIssue;
-  fadeInState: string = "inactive";
+  @Input() private issue: GithubIssue;
+  @Output() private select = new EventEmitter();
+
+  private fadeInState: string = "inactive";
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
     setTimeout(() => this.fadeInState = "active", 0);
+  }
+
+  private onChange(src: HTMLInputElement, issue: GithubIssue): void {
+    this.select.emit({selected: src.checked, issue});
   }
 }
