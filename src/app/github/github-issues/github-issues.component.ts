@@ -1,3 +1,5 @@
+import { Set } from "immutable";
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute, Params } from "@angular/router"
@@ -15,6 +17,7 @@ export class GithubIssuesComponent implements OnInit {
 
   form: FormGroup;
   issues: GithubIssue[] = [];
+  selectedIssues: Set<GithubIssue> = Set<GithubIssue>();
 
   constructor(
     private _fb: FormBuilder,
@@ -40,12 +43,12 @@ export class GithubIssuesComponent implements OnInit {
     return false
   }
 
-  onEnterQuery(q: string) {
+  onEnterQuery(q: string): void {
     this._router.navigate([], {queryParams: {q}});
     this.query(q);
   }
 
-  query(q: string) {
+  query(q: string): void {
     if (!q) {
       return;
     }
@@ -56,6 +59,8 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   private onSelect(e: GithubIssueEvent): void {
-    console.log(e);
+    this.selectedIssues = e.selected ?
+      this.selectedIssues.add(e.issue) :
+      this.selectedIssues.remove(e.issue);
   }
 }

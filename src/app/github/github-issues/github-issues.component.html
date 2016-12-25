@@ -1,3 +1,6 @@
+<div>
+  selected issue count: {{selectedIssues.size}}
+</div>
 <form #f="ngForm" [formGroup]="form">
   <input class="form-control input-block"
     formControlName="query"
@@ -6,4 +9,3 @@
 <li *ngFor="let issue of issues" class="github-issue">
   <github-issue [issue]="issue" (select)="onSelect($event)"></github-issue>
 </li>
-
