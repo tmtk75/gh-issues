@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="issue-list-cell avatar">
-    <a [href]="'https://github.com/issues?q=assignee%3A' + issue.user.login + '+is%3Aopen'"
+    <a [href]="'https://github.com/issues?q=author%3A' + issue.user.login + '+is%3Aopen'"
       target="https://github.com/issues"
       [attr.aria-label]="'View everything assigned to ' + issue.user.login"
       class="tooltipped tooltipped-n">
@@ -72,7 +72,7 @@
     </span>
   </div>
   <div class="issue-list-cell comment">
-    <a href="" class="muted-link">
+    <a [href]="issue.html_url" class="muted-link">
       <svg version="1.1" width="16" height="16" viewBox="0 0 16 16" class="octicon octicon-comment" aria-hidden="true">
         <use xlink:href="#comment" />
       </svg>
