@@ -21,8 +21,14 @@
 
 .icon {
   width: 20px;
-  .open.octicon {
+  .octicon-issue-opened, .octicon-git-pull-request {
     color: #6cc644;
+  }
+  .octicon-issue-closed {
+    color: #bd2c00;
+  }
+  .merged.octicon {
+    color: #6e5494;
   }
 }
 
