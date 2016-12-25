@@ -7,5 +7,5 @@
     #input (keyup.enter)="onEnterQuery(input.value)" />
 </form>
 <li *ngFor="let issue of issues" class="github-issue">
-  <github-issue [issue]="issue" (select)="onSelect($event)"></github-issue>
+  <github-issue [issue]="issue" [selected]="isSelected(issue)" (select)="onSelect($event)"></github-issue>
 </li>

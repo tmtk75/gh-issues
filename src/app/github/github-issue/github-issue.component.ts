@@ -21,6 +21,7 @@ const fadeIn = trigger('fadeInState', [
 export class GithubIssueComponent implements OnInit, AfterViewInit {
 
   @Input() private issue: GithubIssue;
+  @Input() private selected: boolean;
   @Output() private select = new EventEmitter();
 
   private fadeInState: string = "inactive";

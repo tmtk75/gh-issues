@@ -2,6 +2,7 @@
   <label class="issue-list-cell cb">
     <input type="checkbox"
       class="cb"
+      [checked]="selected"
       value={{issue.id}}
       #cb (change)="onChange(cb, issue)"
       />

@@ -1,4 +1,4 @@
-import { Set } from "immutable";
+import { Map } from "immutable";
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
@@ -17,7 +17,7 @@ export class GithubIssuesComponent implements OnInit {
 
   form: FormGroup;
   issues: GithubIssue[] = [];
-  selectedIssues: Set<GithubIssue> = Set<GithubIssue>();
+  selectedIssues: Map<number, GithubIssue> = Map<number, GithubIssue>();
 
   constructor(
     private _fb: FormBuilder,
@@ -58,9 +58,13 @@ export class GithubIssuesComponent implements OnInit {
       .subscribe(it => this.issues = it)
   }
 
+  isSelected(i: GithubIssue): boolean {
+    return this.selectedIssues.has(i.id);
+  }
+
   private onSelect(e: GithubIssueEvent): void {
     this.selectedIssues = e.selected ?
-      this.selectedIssues.add(e.issue) :
-      this.selectedIssues.remove(e.issue);
+      this.selectedIssues.set(e.issue.id, e.issue) :
+      this.selectedIssues.remove(e.issue.id);
   }
 }
