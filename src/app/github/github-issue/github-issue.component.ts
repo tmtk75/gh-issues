@@ -38,7 +38,18 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
 
   private labelColor(hexColor: string): string {
     const c = Color('#' + hexColor);
-    console.log(c.hsl())
-    return c.hsl().l < 50 ? "white" : "#1c2733";
+    const w = Color('white');
+    const p = (luminanace(w) + 0.05)/(luminanace(c) + 0.05);
+    return p <= 4 ? "#1c2733" : "white";
   }
+}
+
+function luminanace(c: Color.Color): number {
+  const a = c.rgbArray().map((v) => {
+    v /= 255;
+    return (v <= 0.03928) ?
+      v / 12.92 :
+      Math.pow(((v+0.055)/1.055), 2.4);
+    });
+  return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
 }
