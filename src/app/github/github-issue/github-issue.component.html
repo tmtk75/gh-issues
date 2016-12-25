@@ -23,9 +23,9 @@
       <span class="issue-meta-section opened-by">
         <a href={{issue.repository.html_url}} target="repository" class="muted-link">{{issue.repository.name}}</a>
         #{{issue.number}}
-        &nbsp;opened&nbsp;
+        opened
         <time dateTime={{issue.created_at}}
-          htmlIs="relative-time">{{issue.created_at | fromNow}}</time> by&nbsp;
+          htmlIs="relative-time">{{issue.created_at | fromNow}}</time> by
         <a href="#"
           (click)="onClick(issue)"
           [attr.aria-label]="'View all issues opened by ' + issue.user.login"
