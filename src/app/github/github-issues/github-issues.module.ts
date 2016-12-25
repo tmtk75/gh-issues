@@ -6,6 +6,8 @@ import { GithubIssuesComponent } from "./github-issues.component"
 import { GithubIssueComponent } from "../github-issue/github-issue.component"
 import { GithubIssuesService } from "../github-issues.service"
 
+import { FromNowPipe } from '../github-issue/from-now.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +20,7 @@ import { GithubIssuesService } from "../github-issues.service"
   declarations: [
     GithubIssuesComponent,
     GithubIssueComponent,
+    FromNowPipe,
   ]
 })
 export class GithubIssuesModule { }

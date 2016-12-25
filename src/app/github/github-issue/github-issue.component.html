@@ -25,7 +25,7 @@
         #{{issue.number}}
         &nbsp;opened&nbsp;
         <time dateTime={{issue.created_at}}
-          htmlIs="relative-time">{{issue.created_at}}</time> by&nbsp;
+          htmlIs="relative-time">{{issue.created_at | fromNow}}</time> by&nbsp;
         <a href="#"
           (click)="onClick(issue)"
           [attr.aria-label]="'View all issues opened by ' + issue.user.login"
