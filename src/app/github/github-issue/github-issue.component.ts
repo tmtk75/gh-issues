@@ -29,6 +29,7 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    //TODO: Fade-in animation runs twice when searching with different query. Why?
     setTimeout(() => this.fadeInState = "active", 0);
   }
 
