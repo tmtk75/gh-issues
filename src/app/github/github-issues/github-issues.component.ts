@@ -1,4 +1,4 @@
-import { Map } from "immutable";
+import { Set, fromJS } from "immutable";
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
@@ -17,7 +17,7 @@ export class GithubIssuesComponent implements OnInit {
 
   form: FormGroup;
   issues: GithubIssue[] = [];
-  selectedIssues: Map<number, GithubIssue> = Map<number, GithubIssue>();
+  selectedIssueIDs: Set<number> = Set<number>();
 
   constructor(
     private _fb: FormBuilder,
@@ -35,7 +35,9 @@ export class GithubIssuesComponent implements OnInit {
       const q = params['q']
       this.form.controls['query'].setValue(q);
       this.query(q)
-    })
+    });
+
+    this.selectedIssueIDs = fromJS(JSON.parse(localStorage.getItem("selectedIssueIDs"))).toSet();
   }
 
   onClick(issue: GithubIssue): boolean {
@@ -58,12 +60,13 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   isSelected(i: GithubIssue): boolean {
-    return this.selectedIssues.has(i.id);
+    return this.selectedIssueIDs.has(i.id);
   }
 
   private onSelect(e: GithubIssueEvent): void {
-    this.selectedIssues = e.selected ?
-      this.selectedIssues.set(e.issue.id, e.issue) :
-      this.selectedIssues.remove(e.issue.id);
+    this.selectedIssueIDs = e.selected ?
+      this.selectedIssueIDs.add(e.issue.id) :
+      this.selectedIssueIDs.remove(e.issue.id);
+    localStorage.setItem("selectedIssueIDs", JSON.stringify(this.selectedIssueIDs.toArray()));
   }
 }
