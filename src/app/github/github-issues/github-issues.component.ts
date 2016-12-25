@@ -45,7 +45,6 @@ export class GithubIssuesComponent implements OnInit {
 
   onEnterQuery(q: string): void {
     this._router.navigate([], {queryParams: {q}});
-    this.query(q);
   }
 
   query(q: string): void {
