@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { GithubIssuesComponent } from "./github-issues.component"
 import { GithubIssueComponent } from "../github-issue/github-issue.component"
+import { GithubPaginationComponent } from "../github-pagination/github-pagination.component"
 import { GithubIssuesService } from "../github-issues.service"
 
 import { FromNowPipe } from '../github-issue/from-now.pipe';
@@ -20,6 +21,7 @@ import { FromNowPipe } from '../github-issue/from-now.pipe';
   declarations: [
     GithubIssuesComponent,
     GithubIssueComponent,
+    GithubPaginationComponent,
     FromNowPipe,
   ]
 })

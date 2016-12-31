@@ -46,7 +46,7 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
 }
 
 function luminanace(c: Color.Color): number {
-  const a = c.rgbArray().map((v) => {
+  const a = c.array().map((v) => {
     v /= 255;
     return (v <= 0.03928) ?
       v / 12.92 :

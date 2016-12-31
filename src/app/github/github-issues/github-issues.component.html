@@ -5,7 +5,11 @@
   <input class="form-control input-block"
     formControlName="query"
     #input (keyup.enter)="onEnterQuery(input.value)" />
+  <input style="display: none;" formControlName="page" />
 </form>
+
+<github-pagination [page]="page" [link]="link" (jump)="onJump($event)"></github-pagination>
+
 <li *ngFor="let issue of issues" class="github-issue">
   <github-issue [issue]="issue" [selected]="isSelected(issue)" (select)="onSelect($event)"></github-issue>
 </li>

@@ -21,3 +21,16 @@ export interface GithubIssue {
   user: GithubUser
 }
 
+export interface LinkHeader {
+  next?: string
+  last?: string
+  first?: string
+  prev?: string
+}
+
+export interface LinkPage {
+  next?: number
+  last?: number
+  first?: number
+  prev?: number
+}

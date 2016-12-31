@@ -13,7 +13,6 @@ import { NotFound404Component } from "./not-found404/not-found404.component";
 
 import { routing } from "./app.routes";
 import { GithubIssuesModule } from './github/github-issues/github-issues.module';
-import { GithubIssueComponent } from './github/github-issue/github-issue.component';
 
 @NgModule({
   declarations: [

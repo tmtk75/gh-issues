@@ -4,9 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute, Params } from "@angular/router"
 
-import { GithubIssue } from "../github-issue";
+import { GithubIssue, LinkPage, LinkHeader } from "../github-issue";
 import { GithubIssueEvent } from "../github-issue/github-issue-event"
 import { GithubIssuesService } from "../github-issues.service";
+
+import { toPages } from "../github-pagination/github-pagination.component";
 
 @Component({
   selector: 'github-issues',
@@ -19,6 +21,9 @@ export class GithubIssuesComponent implements OnInit {
   issues: GithubIssue[] = [];
   selectedIssueIDs: Set<number> = Set<number>();
 
+  page: LinkPage;
+  link: LinkHeader;
+
   constructor(
     private _fb: FormBuilder,
     private route: ActivatedRoute,
@@ -29,34 +34,39 @@ export class GithubIssuesComponent implements OnInit {
   ngOnInit() {
     this.form = this._fb.group({
       query: [""],
+      page: 3,
     });
 
     this.route.queryParams.forEach((params: Params) => {
-      const q = params['q']
+      const q = params['q'];
+      const page = params['page'];
       this.form.controls['query'].setValue(q);
-      this.query(q)
+      this.form.controls['page'].setValue(page);
+      this.query(q, page)
     });
 
     this.selectedIssueIDs = fromJS(JSON.parse(localStorage.getItem("selectedIssueIDs"))).toSet();
   }
 
-  onClick(issue: GithubIssue): boolean {
-    this.onEnterQuery(`is:issue is:open author:${issue.user.login}`)
-    return false
+  onJump(page: number) {
+    //this.form.controls['page'].setValue(page);
+    this.onEnterQuery(this.form.controls['query'].value, page);
   }
 
-  onEnterQuery(q: string): void {
-    this._router.navigate([], {queryParams: {q}});
+  onEnterQuery(q: string, page: number = 1): void {
+    this._router.navigate([], {queryParams: {q, page}});
   }
 
-  query(q: string): void {
+  query(q: string, page): void {
     if (!q) {
       return;
     }
-    this.service.searchIssues(q)
-      //.map(e => e.slice(1, 2))
-      //.do(console.log)
-      .subscribe(it => this.issues = it)
+    this.service.searchIssues(q, page)
+      .subscribe(([link, page, issues]) => {
+        this.issues = issues;
+        this.link = link;
+        this.page = page;
+      })
   }
 
   isSelected(i: GithubIssue): boolean {

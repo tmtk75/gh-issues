@@ -1,0 +1,29 @@
+<ul class="pages">
+  <li class="page-prev"
+      [ngClass]="hasNoPrevious ? 'has-no-prev' : ''"
+      (click)="onClick(current - 1)">Previous</li>
+
+  <li *ngFor="let p of leftItems"
+      class="page"
+      (click)="onClick(p)"
+      >{{p}}</li>
+
+  <li *ngIf="omitLeft" class="page gap">…</li>
+
+  <li *ngFor="let p of pages"
+      class="page"
+      (click)="onClick(p)"
+      [ngClass]="p == current ? 'current' : ''"
+      >{{p}}</li>
+
+  <li *ngIf="omitRight" class="page gap">…</li>
+  
+  <li *ngFor="let p of rightItems"
+      class="page"
+      (click)="onClick(p)"
+      >{{p}}</li>
+
+  <li class="page-next"
+      [ngClass]="hasNoNext ? 'has-no-next' : ''"
+      (click)="onClick(current + 1)">Next</li>
+</ul>
