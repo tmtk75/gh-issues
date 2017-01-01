@@ -1,5 +1,15 @@
 <div class="container">
-  <li><a routerLink="issues">Issues</a></li>
-  <li><a routerLink="settings">Settings</a></li>
-  <router-outlet></router-outlet>
+  <div class="columns">
+    <div class="one-fifth column">
+      <nav class="menu">
+        <span class="menu-heading">Menu heading</span>
+        <a class="menu-item selected" href="#">Account</a>
+        <a class="menu-item" routerLink="issues">Issues</a>
+        <a class="menu-item" routerLink="settings">Settings</a>
+      </nav>
+    </div>
+    <div class="four-fifths column">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
