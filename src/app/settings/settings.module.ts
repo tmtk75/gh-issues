@@ -5,7 +5,7 @@ import { settingsRouting } from "./settings.routes";
 
 import { SettingsComponent } from "./settings.component";
 import { AccountComponent } from "./account/account.component";
-import { SecurityComponent } from "./security/security.component";
+import { TokensComponent } from './tokens/tokens.component';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { SecurityComponent } from "./security/security.component";
   declarations: [
     SettingsComponent,
     AccountComponent,
-    SecurityComponent,
+    TokensComponent,
   ],
 })
 export class SettingsModule { }

@@ -3,16 +3,16 @@ import { Routes, RouterModule } from "@angular/router"
 
 import { SettingsComponent } from "./settings.component"
 import { AccountComponent } from "./account/account.component"
-import { SecurityComponent } from "./security/security.component"
+import { TokensComponent } from "./tokens/tokens.component"
 
 const appRoutes: Routes = [
     {
         path: "settings",
         component: SettingsComponent,
         children: [
-            //{path: "", redirectTo: "account", pathMatch: 'full'},
+            {path: "", redirectTo: "account", pathMatch: 'full'},
             {path: "account", component: AccountComponent},
-            {path: "security", component: SecurityComponent},
+            {path: "tokens", component: TokensComponent},
         ]
     },
 ]
