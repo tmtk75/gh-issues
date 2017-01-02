@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router'
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  private navigationEnd: NavigationEnd = {id: -1, url: "account", urlAfterRedirects: ""};
+
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        this.navigationEnd = e;
+      }
+    })
   }
 
 }

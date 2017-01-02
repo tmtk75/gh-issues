@@ -1,11 +1,9 @@
-<div class="columns">
-  <div class="one-fifth column">
-    <ul>
-      <li><a routerLink="account">Account</a></li>
-      <li><a routerLink="security">Security</a></li>
-    </ul>
-  </div>
-  <div class="four-fifths column">
-    <router-outlet></router-outlet>
-  </div>
+<div class="tabnav">
+  <nav class="tabnav-tabs">
+    <a href="#" routerLink="account" class="tabnav-tab" [ngClass]="navigationEnd.url.match('account$') ? 'selected' : ''">Acccount</a>
+    <a href="#" routerLink="security" class="tabnav-tab" [ngClass]="navigationEnd.url.match('security$') ? 'selected' : ''">Security</a>
+  </nav>
+</div>
+<div>
+  <router-outlet></router-outlet>
 </div>

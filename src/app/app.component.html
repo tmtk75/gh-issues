@@ -3,9 +3,14 @@
     <div class="one-fifth column">
       <nav class="menu">
         <span class="menu-heading">Menu heading</span>
-        <a class="menu-item selected" href="#">Account</a>
-        <a class="menu-item" routerLink="issues">Issues</a>
-        <a class="menu-item" routerLink="settings">Settings</a>
+        <a class="menu-item"
+           [ngClass]="navigationEnd.url.match('/issues') ? 'selected' : ''"
+           routerLink="issues"
+           >Issues</a>
+        <a class="menu-item"
+           [ngClass]="navigationEnd.url.match('/settings') ? 'selected' : ''"
+           routerLink="settings"
+           >Settings</a>
       </nav>
     </div>
     <div class="four-fifths column">
