@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TokensComponent implements OnInit {
 
-  constructor() { }
+  token: string;
 
   ngOnInit() {
+    this.token = localStorage.getItem("GITHUB_TOKEN");
+  }
+
+  onClick(): boolean {
+    console.log(this.token);
+    return false;
   }
 
 }

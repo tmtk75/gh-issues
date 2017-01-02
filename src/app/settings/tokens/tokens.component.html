@@ -1,3 +1,23 @@
-<p>
-  tokens works!
-</p>
+<div class=" mt-0 mb-0">
+  <h2>Personal access token</h2>
+</div>
+<form>
+  <dl class="form-group">
+    <dt>
+      <label for="token">Access token</label>
+    </dt>
+    <dd>
+      <input required
+        id="token" class="form-control" type="text"
+        placeholder="Access token"
+        [(ngModel)]="token" name="token">
+      <p class="note">You can take your personal access token from
+        <a href="https://github.com/settings/tokens" target="github.com">here</a>
+        if you don't have it.
+      </p>
+    </dd>
+  </dl>
+  <p>
+    <button class="btn" (click)="onClick()">Save</button>
+  </p>
+</form>
