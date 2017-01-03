@@ -1,26 +1,42 @@
 <div *ngIf="error" class="flash flash-error">{{error}}</div>
 
-<div>selected issue count: {{appService.getSelectedIssueIDs().size}}</div>
-<div>tottal count: {{searchResult.total_count}}</div>
+<div class="columns">
 
-<form #f="ngForm" [formGroup]="form">
-  <input class="form-control input-block"
-    formControlName="query"
-    #input (keyup.enter)="onEnterQuery(input.value)" />
-  <input style="display: none;" formControlName="page" />
-</form>
+  <div class="one-fifth column">
+    <nav class="menu">
+      <span class="menu-heading">Query history</span>
+      <a *ngFor="let query of appService.getQueryHistory()"
+        class="menu-item" _class="css-truncate css-truncate-target tooltipped tooltipped-n"
+        [attr.aria-label]="query.q"
+        >{{query.q}}</a>
+    </nav>
+  </div>
 
-<github-pagination [page]="searchResult.linkPage" [link]="searchResult.linkHeader" (jump)="onJump($event)"></github-pagination>
+  <div class="four-fifths column">
+    <div>selected issue count: {{appService.getSelectedIssueIDs().size}}</div>
+    <div>tottal count: {{searchResult.total_count}}</div>
 
-<div *ngIf="searchResult.issues.length > 0">
-  <li *ngFor="let issue of searchResult.issues" class="github-issue">
-    <github-issue [issue]="issue" [selected]="isSelected(issue)" (select)="onSelect($event)"></github-issue>
-  </li>
-</div>
-<div *ngIf="searchResult.issues.length == 0" class="blankslate">
-  <svg version="1.1" width="24" height="24" class="octicon octicon-issue-opened" aria-hidden="true">
-    <use xlink:href="#issue-opened" />
-  </svg>
-  <h3>No found issues</h3>
-  <p>Please check the query.</p>
+    <form #f="ngForm" [formGroup]="form">
+      <input class="form-control input-block"
+        formControlName="query"
+        #input (keyup.enter)="onEnterQuery(input.value)" />
+      <input style="display: none;" formControlName="page" />
+    </form>
+
+    <github-pagination [page]="searchResult.linkPage" [link]="searchResult.linkHeader" (jump)="onJump($event)"></github-pagination>
+
+    <div *ngIf="searchResult.issues.length > 0">
+      <li *ngFor="let issue of searchResult.issues" class="github-issue">
+        <github-issue [issue]="issue" [selected]="isSelected(issue)" (select)="onSelect($event)"></github-issue>
+      </li>
+    </div>
+    <div *ngIf="searchResult.issues.length == 0" class="blankslate">
+      <svg version="1.1" width="24" height="24" class="octicon octicon-issue-opened" aria-hidden="true">
+        <use xlink:href="#issue-opened" />
+      </svg>
+      <h3>No found issues</h3>
+      <p>Please check the query.</p>
+    </div>
+  </div>
+
 </div>
