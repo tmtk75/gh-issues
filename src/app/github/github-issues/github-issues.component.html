@@ -24,7 +24,11 @@
       <input style="display: none;" formControlName="page" />
     </form>
 
-    <github-pagination [page]="searchResult.linkPage" [link]="searchResult.linkHeader" (jump)="onJump($event)"></github-pagination>
+    <github-pagination
+      *ngIf="searchResult.total_count > 0"
+      [page]="searchResult.linkPage"
+      [link]="searchResult.linkHeader"
+      (jump)="onJump($event)"></github-pagination>
 
     <div *ngIf="searchResult.issues.length > 0">
       <li *ngFor="let issue of searchResult.issues" class="github-issue">
