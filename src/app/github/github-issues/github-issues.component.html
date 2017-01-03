@@ -40,7 +40,8 @@
         <github-issue [issue]="issue" [selected]="isSelected(issue)" (select)="onSelect($event)"></github-issue>
       </li>
     </div>
-    <div *ngIf="searchResult.issues.length == 0" class="blankslate">
+
+    <div *ngIf="searchResult.issues.length == 0" class="blankslate mt-1">
       <svg version="1.1" width="24" height="24" class="octicon octicon-issue-opened" aria-hidden="true">
         <use xlink:href="#issue-opened" />
       </svg>
