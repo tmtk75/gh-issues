@@ -11,7 +11,7 @@
     <nav class="menu">
       <span class="menu-heading">Query history</span>
       <a *ngFor="let query of appService.getQueryHistory()"
-        class="menu-item"
+        class="menu-item" style="cursor: pointer"
         (click)="selectQuery(query)">
         {{query.q}}
       </a>
