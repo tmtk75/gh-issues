@@ -73,14 +73,14 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   isSelected(i: GithubIssue): boolean {
-    return this.appService.getSelectedIssueIDs().has(i.id);
+    return this.appService.getSelectedIssues().has(i.id.toString());
   }
 
   private onSelect(e: GithubIssueEvent): void {
     if (e.selected) {
-      this.appService.selectIssue(e.issue.id);
+      this.appService.selectIssue(e.issue);
     } else {
-      this.appService.unselectIssue(e.issue.id);
+      this.appService.unselectIssue(e.issue);
     }
   }
 

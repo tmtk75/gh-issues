@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 
+import { GithubIssue } from "./github/github-issue";
+
 import { Set, List, fromJS } from "immutable";
 
 @Injectable()
@@ -14,18 +16,30 @@ export class AppService {
     localStorage.setItem("GITHUB_TOKEN", token);
   }
 
-  selectIssue(id: number) {
+  selectIssue(issue: GithubIssue) {
     const s = this.getSelectedIssueIDs();
-    localStorage.setItem("selectedIssueIDs", JSON.stringify(s.add(id).toArray()));
+    localStorage.setItem("selectedIssueIDs", JSON.stringify(s.add(issue.id).toArray()));
+
+    const id2issue = JSON.parse(localStorage.getItem("selectedID2issue") || '{}');
+    id2issue[issue.id] = {id: issue.id, url: issue.url};
+    localStorage.setItem("selectedID2issue", JSON.stringify(id2issue));
   }
 
-  unselectIssue(id: number) {
+  unselectIssue(issue: GithubIssue) {
     const s = this.getSelectedIssueIDs();
-    localStorage.setItem("selectedIssueIDs", JSON.stringify(s.remove(id).toArray()));
+    localStorage.setItem("selectedIssueIDs", JSON.stringify(s.remove(issue.id).toArray()));
+
+    const id2issue = JSON.parse(localStorage.getItem("selectedID2issue") || '{}');
+    delete id2issue[issue.id];
+    localStorage.setItem("selectedID2issue", JSON.stringify(id2issue));
   }
 
-  getSelectedIssueIDs(): Set<number> {
-    return fromJS(JSON.parse(localStorage.getItem("selectedIssueIDs"))).toSet();
+  private getSelectedIssueIDs(): Set<number> {
+    return fromJS(JSON.parse(localStorage.getItem("selectedIssueIDs")) || []).toSet();
+  }
+
+  getSelectedIssues(): Map<string, GithubIssue> {
+    return fromJS(JSON.parse(localStorage.getItem("selectedID2issue")) || {});
   }
 
   saveLastQueryParams(params: Params) {
