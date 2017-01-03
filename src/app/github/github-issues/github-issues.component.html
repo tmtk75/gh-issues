@@ -22,10 +22,13 @@
     <!-- <div>selected issue count: {{appService.getSelectedIssueIDs().size}}</div> -->
     <div>total count: {{searchResult.total_count}}</div>
 
-    <form #f="ngForm" [formGroup]="form">
-      <input class="form-control input-block"
+    <form #f="ngForm" [formGroup]="form" class="search-form">
+      <input class="form-control input-block search-input"
         formControlName="query"
         #input (keyup.enter)="onEnterQuery(input.value)" />
+      <svg version="1.1" width="16" height="16" viewBox="0 0 16 16" class="octicon octicon-search search-icon" aria-hidden="true">
+        <use xlink:href="#search" />
+      </svg>
       <input style="display: none;" formControlName="page" />
     </form>
 

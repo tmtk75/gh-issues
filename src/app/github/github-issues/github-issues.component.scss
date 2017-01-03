@@ -8,3 +8,18 @@
     width: 100%;
   }
 }
+
+.search-form {
+  position: relative;
+
+  .search-input {
+    padding-left: 30px;
+  }
+
+  .search-icon {
+    color: #ccc;
+    position: absolute;
+    top: 9px;
+    left: 8px;
+  }
+}
