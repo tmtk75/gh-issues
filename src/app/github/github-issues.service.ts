@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptionsArgs, Headers } from "@angular/http"
 import { Observable } from "rxjs/Observable"
 
+import { AppService } from '../app.service';
 import { GithubIssue, GithubRepository, LinkHeader, LinkPage } from "./github-issue";
 
 function toRepository(e: GithubIssue): GithubRepository {
@@ -38,10 +39,13 @@ export function parsePage(h: LinkHeader): LinkPage {
 @Injectable()
 export class GithubIssuesService {
 
-  constructor(private http: Http) {}
+  constructor(
+    private http: Http,
+    private _app: AppService,
+  ) {}
 
   searchIssues(query: string, page: number): Observable<[LinkHeader, LinkPage, GithubIssue[]]> {
-    const token = localStorage.getItem("GITHUB_TOKEN")
+    const token = this._app.getAccessToken();
     const headers = token ? {authorization: `token ${token}`} : {}
     const opts = {search: `q=${query}&page=${page}`, headers: new Headers(headers)}
     return this.http.get(`https://api.github.com/search/issues`, opts)

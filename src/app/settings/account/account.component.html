@@ -1,3 +1,32 @@
-<p>
-  account works!
-</p>
+<div class="subhead mt-0 mb-0">
+  <h2>Your profile</h2>
+</div>
+
+<div *ngIf="error" class="flash flash-error">{{error}}</div>
+
+<form [formGroup]="theForm">
+  <dl class="form-group">
+    <dt>
+      <label for="login">Login</label>
+    </dt>
+    <dd>{{login}}</dd>
+  </dl>
+  <dl class="form-group">
+    <dt>
+      <label for="name">Name</label>
+    </dt>
+    <dd>
+      <input formControlName="name"
+        class="form-control"
+        type="text">
+    </dd>
+  </dl>
+  <dl class="form-group">
+    <dt>
+      <label for="picture">Profile picture</label>
+    </dt>
+    <dd>
+      <img class="avatar" [src]="avatarURL" width="200" height="200">
+    </dd>
+  </dl>
+</form>

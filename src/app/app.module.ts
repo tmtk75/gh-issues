@@ -14,6 +14,9 @@ import { NotFound404Component } from "./not-found404/not-found404.component";
 import { routing } from "./app.routes";
 import { GithubIssuesModule } from './github/github-issues/github-issues.module';
 
+import { AppService } from './app.service';
+import { GithubProfileService } from './github/github-profile-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,10 @@ import { GithubIssuesModule } from './github/github-issues/github-issues.module'
     routing,
     GithubIssuesModule,
   ],
-  providers: [],
+  providers: [
+    AppService,
+    GithubProfileService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
