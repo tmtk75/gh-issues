@@ -20,6 +20,7 @@ export class GithubIssuesComponent implements OnInit {
   form: FormGroup;
   issues: GithubIssue[] = [];
   selectedIssueIDs: Set<number> = Set<number>();
+  error: Error;
 
   page: LinkPage;
   link: LinkHeader;
@@ -66,7 +67,7 @@ export class GithubIssuesComponent implements OnInit {
         this.issues = issues;
         this.link = link;
         this.page = page;
-      })
+      }, (err) => this.error = err);
   }
 
   isSelected(i: GithubIssue): boolean {

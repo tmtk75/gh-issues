@@ -1,6 +1,9 @@
+<div *ngIf="error" class="flash flash-error">{{error}}</div>
+
 <div>
   selected issue count: {{selectedIssueIDs.size}}
 </div>
+
 <form #f="ngForm" [formGroup]="form">
   <input class="form-control input-block"
     formControlName="query"

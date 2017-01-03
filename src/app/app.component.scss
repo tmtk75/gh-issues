@@ -1,0 +1,10 @@
+.app-menu {
+    list-style: none;
+
+    display: flex;
+    flex-flow: row wrap;
+
+    li {
+        margin-right: 20px;
+    }
+}
