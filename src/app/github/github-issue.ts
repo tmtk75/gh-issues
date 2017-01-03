@@ -34,3 +34,10 @@ export interface LinkPage {
   first?: number
   prev?: number
 }
+
+export interface GithubSearchResult {
+  total_count: number
+  linkHeader: LinkHeader
+  linkPage: LinkPage
+  issues: GithubIssue[]
+}

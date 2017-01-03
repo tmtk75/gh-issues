@@ -1,6 +1,7 @@
 <div *ngIf="error" class="flash flash-error">{{error}}</div>
 
 <div>selected issue count: {{appService.getSelectedIssueIDs().size}}</div>
+<div>tottal count: {{searchResult.total_count}}</div>
 
 <form #f="ngForm" [formGroup]="form">
   <input class="form-control input-block"
@@ -9,14 +10,14 @@
   <input style="display: none;" formControlName="page" />
 </form>
 
-<github-pagination [page]="page" [link]="link" (jump)="onJump($event)"></github-pagination>
+<github-pagination [page]="searchResult.linkPage" [link]="searchResult.linkHeader" (jump)="onJump($event)"></github-pagination>
 
-<div *ngIf="issues.length > 0">
-  <li *ngFor="let issue of issues" class="github-issue">
+<div *ngIf="searchResult.issues.length > 0">
+  <li *ngFor="let issue of searchResult.issues" class="github-issue">
     <github-issue [issue]="issue" [selected]="isSelected(issue)" (select)="onSelect($event)"></github-issue>
   </li>
 </div>
-<div *ngIf="issues.length == 0" class="blankslate">
+<div *ngIf="searchResult.issues.length == 0" class="blankslate">
   <svg version="1.1" width="24" height="24" class="octicon octicon-issue-opened" aria-hidden="true">
     <use xlink:href="#issue-opened" />
   </svg>

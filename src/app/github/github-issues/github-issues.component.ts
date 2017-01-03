@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute, Params } from "@angular/router"
 
-import { GithubIssue, LinkPage, LinkHeader } from "../github-issue";
+import { GithubSearchResult, GithubIssue } from "../github-issue";
 import { GithubIssueEvent } from "../github-issue/github-issue-event"
 import { GithubIssuesService } from "../github-issues.service";
 import { AppService } from '../../app.service';
@@ -17,11 +17,8 @@ import { toPages } from "../github-pagination/github-pagination.component";
 export class GithubIssuesComponent implements OnInit {
 
   form: FormGroup;
-  issues: GithubIssue[] = [];
+  searchResult: GithubSearchResult = {linkPage: null, linkHeader: null, issues: [], total_count: 0};
   error: Error;
-
-  page: LinkPage;
-  link: LinkHeader;
 
   constructor(
     private _fb: FormBuilder,
@@ -60,10 +57,9 @@ export class GithubIssuesComponent implements OnInit {
     }
     this.appService.saveLastQueryParams({q, page});
     this.service.searchIssues(q, page)
-      .subscribe(([link, page, issues]) => {
-        this.issues = issues;
-        this.link = link;
-        this.page = page;
+      .subscribe(result => {
+        this.searchResult = result;
+        this.error = null;
       }, (err) => this.error = err);
   }
 

@@ -3,7 +3,7 @@ import { Http, RequestOptionsArgs, Headers } from "@angular/http"
 import { Observable } from "rxjs/Observable"
 
 import { AppService } from '../app.service';
-import { GithubIssue, GithubRepository, LinkHeader, LinkPage } from "./github-issue";
+import { GithubIssue, GithubRepository, LinkHeader, LinkPage, GithubSearchResult } from "./github-issue";
 
 function toRepository(e: GithubIssue): GithubRepository {
   const [ full_name, name ] = [-2, -1].map(i => e.repository_url.split("/").slice(i).join("/"))
@@ -44,18 +44,19 @@ export class GithubIssuesService {
     private _app: AppService,
   ) {}
 
-  searchIssues(query: string, page: number): Observable<[LinkHeader, LinkPage, GithubIssue[]]> {
+  searchIssues(query: string, page: number): Observable<GithubSearchResult> {
     const token = this._app.getAccessToken();
     const headers = token ? {authorization: `token ${token}`} : {}
     const opts = {search: `q=${query}&page=${page}`, headers: new Headers(headers)}
     return this.http.get(`https://api.github.com/search/issues`, opts)
       .map(res => [parseLinkHeader(res.headers.get("link")), res.json()])
       .map(([link, issues]) => [link, parsePage(link), issues])
-      .map(([link, page, issues]) => [
-        link,
-        page,
-        issues.items.map(e => Object.assign(e, {repository: toRepository(e)}))
-      ])
+      .map(([link, page, issues]) => ({
+        linkHeader: link,
+        linkPage: page,
+        total_count: issues.total_count,
+        issues: issues.items.map(e => Object.assign(e, {repository: toRepository(e)})),
+      }))
   }
 
 }
