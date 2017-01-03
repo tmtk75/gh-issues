@@ -31,7 +31,7 @@
   </div>
   <div class="issue-list-cell title">
     <a [href]="issue.html_url"
-      target="issue"
+      target="issue{{issue.id}}"
       className="link">{{issue.title}}</a>
     <div class="issue-meta text-small">
       <span class="issue-meta-section opened-by">
