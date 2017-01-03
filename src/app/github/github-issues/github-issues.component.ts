@@ -1,5 +1,3 @@
-import { Set, fromJS } from "immutable";
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { Router, ActivatedRoute, Params } from "@angular/router"
@@ -7,6 +5,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router"
 import { GithubIssue, LinkPage, LinkHeader } from "../github-issue";
 import { GithubIssueEvent } from "../github-issue/github-issue-event"
 import { GithubIssuesService } from "../github-issues.service";
+import { AppService } from '../../app.service';
 
 import { toPages } from "../github-pagination/github-pagination.component";
 
@@ -19,7 +18,6 @@ export class GithubIssuesComponent implements OnInit {
 
   form: FormGroup;
   issues: GithubIssue[] = [];
-  selectedIssueIDs: Set<number> = Set<number>();
   error: Error;
 
   page: LinkPage;
@@ -30,6 +28,7 @@ export class GithubIssuesComponent implements OnInit {
     private route: ActivatedRoute,
     private _router: Router,
     private service: GithubIssuesService,
+    private appService: AppService,
   ) { }
 
   ngOnInit() {
@@ -41,17 +40,15 @@ export class GithubIssuesComponent implements OnInit {
     this.route.queryParams.forEach((params: Params) => {
       const q = params['q'];
       const page = params['page'];
-      this.form.controls['query'].setValue(q);
-      this.form.controls['page'].setValue(page);
+      this.form.get('query').setValue(q);
+      this.form.get('page').setValue(page);
       this.query(q, page)
     });
-
-    this.selectedIssueIDs = fromJS(JSON.parse(localStorage.getItem("selectedIssueIDs"))).toSet();
   }
 
   onJump(page: number) {
-    //this.form.controls['page'].setValue(page);
-    this.onEnterQuery(this.form.controls['query'].value, page);
+    //this.form.get('page'])setValue(page);
+    this.onEnterQuery(this.form.get('query').value, page);
   }
 
   onEnterQuery(q: string, page: number = 1): void {
@@ -71,13 +68,14 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   isSelected(i: GithubIssue): boolean {
-    return this.selectedIssueIDs.has(i.id);
+    return this.appService.getSelectedIssueIDs().has(i.id);
   }
 
   private onSelect(e: GithubIssueEvent): void {
-    this.selectedIssueIDs = e.selected ?
-      this.selectedIssueIDs.add(e.issue.id) :
-      this.selectedIssueIDs.remove(e.issue.id);
-    localStorage.setItem("selectedIssueIDs", JSON.stringify(this.selectedIssueIDs.toArray()));
+    if (e.selected) {
+      this.appService.selectIssue(e.issue.id);
+    } else {
+      this.appService.unselectIssue(e.issue.id);
+    }
   }
 }
