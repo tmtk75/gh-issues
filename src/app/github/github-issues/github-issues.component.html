@@ -30,7 +30,7 @@
     </form>
 
     <github-pagination
-      *ngIf="searchResult.total_count > 0"
+      *ngIf="searchResult.linkPage ? !!(searchResult.linkPage.prev || searchResult.linkPage.next) : false"
       [page]="searchResult.linkPage"
       [link]="searchResult.linkHeader"
       (jump)="onJump($event)"></github-pagination>

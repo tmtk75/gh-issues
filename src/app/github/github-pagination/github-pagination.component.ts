@@ -21,8 +21,8 @@ export class GithubPaginationComponent implements OnInit, OnChanges {
   private pages: number[] = [];
   private omitRight: boolean = false;
   private rightItems: number[] = [];
-  private hasNoPrevious = false;
-  private hasNoNext = false;
+  private hasNoPrevious = true;
+  private hasNoNext = true;
 
   ngOnInit() {
   }
@@ -38,7 +38,7 @@ export class GithubPaginationComponent implements OnInit, OnChanges {
     this.pages = e.items;
     this.omitRight = e.omittedRight;
     this.rightItems = e.rightItems;
-    this.hasNoPrevious = this.current == 1;
+    this.hasNoPrevious = !this.page.prev;
     this.hasNoNext = !this.page.last;
   }
 

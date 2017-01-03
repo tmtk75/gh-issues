@@ -22,7 +22,7 @@ function toRepository(e: GithubIssue): GithubRepository {
 
 export function parseLinkHeader(link: string): LinkHeader {
   if (!link) {
-    return {first: "?page=1", next: "?page=2"};
+    return {first: "?page=1"};
   }
   return link.split(",").map(e => e.split(";"))
     .map(([url, rel]) => [rel.match(`rel="(.*)"`)[1], url.match("<(.*)>")[1]])
