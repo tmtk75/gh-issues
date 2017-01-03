@@ -33,7 +33,7 @@ export class AppService {
     if ((h.first() || {})['q'] == params['q']) {
       return;
     }
-    const n = h.unshift(params).slice(0, 5);
+    const n = h.unshift(params).slice(0, 10);
     localStorage.setItem("queryHistory", JSON.stringify(n.toJS()));
   }
 

@@ -10,7 +10,7 @@
     </div>
     <nav class="menu">
       <span class="menu-heading">Query history</span>
-      <a *ngFor="let query of appService.getQueryHistory()"
+      <a *ngFor="let query of appService.getQueryHistory().slice(1, 1 + 5)"
         class="menu-item" style="cursor: pointer"
         (click)="selectQuery(query)">
         {{query.q}}
