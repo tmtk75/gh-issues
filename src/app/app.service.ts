@@ -30,11 +30,14 @@ export class AppService {
 
   saveLastQueryParams(params: Params) {
     const h = this.getQueryHistory();
+    if ((h.first() || {})['q'] == params['q']) {
+      return;
+    }
     localStorage.setItem("queryHistory", JSON.stringify(h.unshift(params).toJS()));
   }
 
   getLastQueryParams(): Params {
-    return this.getQueryHistory().first();
+    return this.getQueryHistory().first() || {};
   }
 
   getQueryHistory(): List<Params> {
