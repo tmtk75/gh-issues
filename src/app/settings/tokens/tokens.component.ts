@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-tokens',
@@ -7,14 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TokensComponent implements OnInit {
 
-  token: string;
+  private theForm: FormGroup;
+
+  constructor(private _fb: FormBuilder) {}
 
   ngOnInit() {
-    this.token = localStorage.getItem("GITHUB_TOKEN");
+    this.theForm = this._fb.group({
+      token: '',
+    });
+    this.theForm.controls['token'].setValue(localStorage.getItem("GITHUB_TOKEN"));
   }
 
   onClick(): boolean {
-    console.log(this.token);
+    console.log({touched: this.theForm.touched, dirty: this.theForm.dirty})
     return false;
   }
 

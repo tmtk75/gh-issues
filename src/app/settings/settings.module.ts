@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { settingsRouting } from "./settings.routes";
 
@@ -12,6 +12,7 @@ import { TokensComponent } from './tokens/tokens.component';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     settingsRouting,
   ],
   declarations: [

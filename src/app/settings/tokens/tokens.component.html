@@ -1,23 +1,25 @@
-<div class=" mt-0 mb-0">
+<div class="subhead mt-0 mb-0">
   <h2>Personal access token</h2>
 </div>
-<form>
-  <dl class="form-group">
+
+<form #form="ngForm" [formGroup]="theForm">
+  <dl class="form-group warn">
     <dt>
       <label for="token">Access token</label>
     </dt>
     <dd>
-      <input required
-        id="token" class="form-control" type="text"
-        placeholder="Access token"
-        [(ngModel)]="token" name="token">
-      <p class="note">You can take your personal access token from
-        <a href="https://github.com/settings/tokens" target="github.com">here</a>
-        if you don't have it.
-      </p>
+      <input #token required formControlName="token"
+        id="token" class="form-control"
+        type="text" placeholder="Your personal access token">
+    </dd>
+    <dd class="warning" *ngIf="token.value.length == 0">This field is mandatory.</dd>
+    <dd class="note">
+      You can take your personal access token from
+      <a href="https://github.com/settings/tokens" target="github.com">here</a>
+      if you don't have it.
     </dd>
   </dl>
   <p>
-    <button class="btn" (click)="onClick()">Save</button>
+    <button class="btn" (click)="onClick()" [disabled]="!form.valid">Save</button>
   </p>
 </form>
