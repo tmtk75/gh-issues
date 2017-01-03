@@ -47,7 +47,6 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   onJump(page: number) {
-    //this.form.get('page'])setValue(page);
     this.onEnterQuery(this.form.get('query').value, page);
   }
 
@@ -55,10 +54,11 @@ export class GithubIssuesComponent implements OnInit {
     this._router.navigate([], {queryParams: {q, page}});
   }
 
-  query(q: string, page): void {
+  query(q: string, page: number): void {
     if (!q) {
       return;
     }
+    this.appService.saveLastQueryParams({q, page});
     this.service.searchIssues(q, page)
       .subscribe(([link, page, issues]) => {
         this.issues = issues;

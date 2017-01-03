@@ -1,10 +1,10 @@
 <div class="container">
 
   <ul class="app-menu mt-4 mb-4">
-    <li><a routerLink="/issues">Issues</a></li>
+    <li><a routerLink="/issues" [queryParams]="app.getLastQueryParams()">Issues</a></li>
     <li><a routerLink="/settings">Settings</a></li>
   </ul>
 
   <router-outlet></router-outlet>
-  
+
 </div>

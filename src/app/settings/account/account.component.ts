@@ -13,7 +13,7 @@ export class AccountComponent implements OnInit {
 
   private theForm: FormGroup;
   private login: string;
-  private avatarURL: string = "https://avatars3.githubusercontent.com/u/9919?v=3&s=72";
+  private avatarURL: string = ""; //"https://avatars3.githubusercontent.com/u/9919?v=3&s=72";
   private error: Error;
 
   constructor(
