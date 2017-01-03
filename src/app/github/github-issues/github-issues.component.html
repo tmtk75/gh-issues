@@ -20,15 +20,15 @@
 
   <div class="four-fifths column">
     <!-- <div>selected issue count: {{appService.getSelectedIssueIDs().size}}</div> -->
-    <div>total count: {{searchResult.total_count}}</div>
-
     <form #f="ngForm" [formGroup]="form" class="search-form">
       <input class="form-control input-block search-input"
         formControlName="query"
+        [ngStyle]="{'padding-left': searchCountWidth}"
         #input (keyup.enter)="onEnterQuery(input.value)" />
       <svg version="1.1" width="16" height="16" viewBox="0 0 16 16" class="octicon octicon-search search-icon" aria-hidden="true">
         <use xlink:href="#search" />
       </svg>
+      <span id="search-form.search-count" class="search-count">{{searchResult.total_count}}</span>
       <input style="display: none;" formControlName="page" />
     </form>
 

@@ -12,14 +12,22 @@
 .search-form {
   position: relative;
 
-  .search-input {
-    padding-left: 30px;
-  }
-
   .search-icon {
     color: #ccc;
     position: absolute;
     top: 9px;
     left: 8px;
+  }
+
+  .search-count {
+    color: #aaa;
+    position: absolute;
+    height: 30px;
+    top: 9px - 3px;
+    left: 8px + 16px + 7px;
+  }
+
+  .search-input {
+    padding-left: 30px;
   }
 }

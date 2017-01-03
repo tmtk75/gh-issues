@@ -19,6 +19,7 @@ export class GithubIssuesComponent implements OnInit {
 
   form: FormGroup;
   searchResult: GithubSearchResult = {linkPage: null, linkHeader: null, issues: [], total_count: 0};
+  searchCountWidth: string = "0px";
   error: Error;
 
   constructor(
@@ -43,6 +44,14 @@ export class GithubIssuesComponent implements OnInit {
       this.form.get('page').setValue(page);
       this.query(q, page)
     });
+
+    const node = document.getElementById("search-form.search-count");
+    new MutationObserver(mutations =>
+      mutations.forEach(_ => {
+        this.searchCountWidth = `${30 + 7 + node.clientWidth}px`;  // See .scss file for `30 + 7`
+        console.log("searchCountWidth:", this.searchCountWidth)
+      })
+    ).observe(node, {characterData: true, subtree: true});
   }
 
   onJump(page: number) {
