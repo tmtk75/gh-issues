@@ -3,6 +3,11 @@
 <div class="columns">
 
   <div class="one-fifth column">
+    <div class="predefined-queries">
+      <button *ngFor="let b of predefinedQueryButtons"
+        class="btn btn-outline btn-sm mb-1"
+        type="button" (click)="onClickPredefinedQuery(b)">{{b.text}}</button>
+    </div>
     <nav class="menu">
       <span class="menu-heading">Query history</span>
       <a *ngFor="let query of appService.getQueryHistory()"
@@ -14,8 +19,8 @@
   </div>
 
   <div class="four-fifths column">
-    <div>selected issue count: {{appService.getSelectedIssueIDs().size}}</div>
-    <div>tottal count: {{searchResult.total_count}}</div>
+    <!-- <div>selected issue count: {{appService.getSelectedIssueIDs().size}}</div> -->
+    <div>total count: {{searchResult.total_count}}</div>
 
     <form #f="ngForm" [formGroup]="form">
       <input class="form-control input-block"

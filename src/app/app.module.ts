@@ -15,7 +15,7 @@ import { routing } from "./app.routes";
 import { GithubIssuesModule } from './github/github-issues/github-issues.module';
 
 import { AppService } from './app.service';
-import { GithubProfileService } from './github/github-profile-service';
+import { GithubProfileService } from './github/github-profile.service';
 
 @NgModule({
   declarations: [

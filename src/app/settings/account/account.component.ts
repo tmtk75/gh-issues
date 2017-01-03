@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { AppService } from '../../app.service';
-import { GithubProfileService } from '../../github/github-profile-service';
+import { GithubProfileService } from '../../github/github-profile.service';
 
 @Component({
   selector: 'app-account',

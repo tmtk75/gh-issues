@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from "@angular/router"
 import { GithubSearchResult, GithubIssue } from "../github-issue";
 import { GithubIssueEvent } from "../github-issue/github-issue-event"
 import { GithubIssuesService } from "../github-issues.service";
+import { GithubProfileService } from "../github-profile.service";
 import { AppService } from '../../app.service';
 
 import { toPages } from "../github-pagination/github-pagination.component";
@@ -25,6 +26,7 @@ export class GithubIssuesComponent implements OnInit {
     private route: ActivatedRoute,
     private _router: Router,
     private service: GithubIssuesService,
+    private profileService: GithubProfileService,
     private appService: AppService,
   ) { }
 
@@ -48,7 +50,8 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   onEnterQuery(q: string, page: number = 1): void {
-    this._router.navigate([], {queryParams: {q, page}});
+    //this._router.navigate([], {queryParams: {q, page}});
+    this.selectQuery({q, page});
   }
 
   query(q: string, page: number): void {
@@ -80,4 +83,17 @@ export class GithubIssuesComponent implements OnInit {
     //  e.g) <a routerLink="/issues" [queryParams]="query">...</a>
     this._router.navigate([], {queryParams: p});
   }
+
+  onClickPredefinedQuery(e: Object) {
+    this.profileService.getGithubProfile(this.appService.getAccessToken()).subscribe(profile => {
+      const q = e['query'].replace(/<login>/g, profile.login);
+      this.selectQuery({q, page: 1});
+    })
+  }
+
+  predefinedQueryButtons = [
+    {text: "Created",   query: "is:open is:issue author:<login>"},
+    {text: "Assigned",  query: "is:open is:issue assignee:<login>"},
+    {text: "Mentioned", query: "is:open is:issue mentions:<login>"},
+  ]
 }
