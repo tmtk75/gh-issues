@@ -2,9 +2,14 @@
   <h2>Your profile</h2>
 </div>
 
+<div *ngIf="!_app.getAccessToken()" class="flash flash-warn">
+  <p>No access token.</p>
+  <p>Set your personal access token <a routerLink="/settings/tokens">here</a>.</p>
+</div>
+
 <div *ngIf="error" class="flash flash-error">{{error}}</div>
 
-<form [formGroup]="theForm">
+<form *ngIf="_app.getAccessToken()" [formGroup]="theForm">
   <dl class="form-group">
     <dt>
       <label for="login">Login</label>

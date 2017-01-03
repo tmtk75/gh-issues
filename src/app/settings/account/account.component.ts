@@ -28,6 +28,9 @@ export class AccountComponent implements OnInit {
     });
 
     const token = this._app.getAccessToken();
+    if (!token) {
+      return;
+    }
     this._gh.getGithubProfile(token).subscribe(profile => {
       this.login = profile.login;
       this.theForm.get("name").setValue(profile.name);
