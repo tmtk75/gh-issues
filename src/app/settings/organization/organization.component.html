@@ -1,0 +1,22 @@
+<div class="subhead mt-0 mb-0">
+  <h2>Organization</h2>
+</div>
+
+<form #form="ngForm" [formGroup]="theForm">
+  <dl class="form-group warn">
+    <dt>
+      <label for="token">Organization</label>
+    </dt>
+    <dd>
+      <input formControlName="organization"
+        class="form-control"
+        type="text" placeholder="Your default organization">
+    </dd>
+    <dd class="note">
+      This orgnization is used whenever to query.
+    </dd>
+  </dl>
+  <p>
+    <button class="btn" (click)="onClick()" >Save</button>
+  </p>
+</form>

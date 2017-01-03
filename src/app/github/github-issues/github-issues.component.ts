@@ -104,6 +104,11 @@ export class GithubIssuesComponent implements OnInit {
   ]
 
   onClickLabel(label: Object) {
-    this.selectQuery({q: `is:open is:issue label:"${label['name']}"`});
+    let q = `is:open is:issue label:"${label['name']}"`;
+    const org = this.appService.getDefaultOrganization();
+    if (org) {
+      q += ` org:"${org}"`;
+    }
+    this.selectQuery({q});
   }
 }

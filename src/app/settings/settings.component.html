@@ -7,6 +7,10 @@
         routerLink="account"
         >Account</a>
       <a class="menu-item"
+        [ngClass]="navigationEnd.urlAfterRedirects.match('/organization') ? 'selected' : ''"
+        routerLink="organization"
+        >Organization</a>
+      <a class="menu-item"
         [ngClass]="navigationEnd.urlAfterRedirects.match('/tokens') ? 'selected' : ''"
         routerLink="tokens"
         >Access tokens</a>

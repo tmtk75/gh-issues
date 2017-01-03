@@ -45,4 +45,11 @@ export class AppService {
     return List(JSON.parse(localStorage.getItem("queryHistory")) || []);
   }
 
+  getDefaultOrganization(): string {
+    return localStorage.getItem("defaultOrganization");
+  }
+
+  saveDefaultOrganization(org: string) {
+    localStorage.setItem("defaultOrganization", org);
+  }
 }

@@ -7,6 +7,7 @@ import { settingsRouting } from "./settings.routes";
 import { SettingsComponent } from "./settings.component";
 import { AccountComponent } from "./account/account.component";
 import { TokensComponent } from './tokens/tokens.component';
+import { OrganizationComponent } from './organization/organization.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { TokensComponent } from './tokens/tokens.component';
     SettingsComponent,
     AccountComponent,
     TokensComponent,
+    OrganizationComponent,
   ],
 })
 export class SettingsModule { }
