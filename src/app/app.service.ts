@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 
-import { Set, fromJS } from "immutable";
+import { Set, List, fromJS } from "immutable";
 
 @Injectable()
 export class AppService {
@@ -28,14 +28,17 @@ export class AppService {
     return fromJS(JSON.parse(localStorage.getItem("selectedIssueIDs"))).toSet();
   }
 
-  private lastQueryParams: Params = {};
-
   saveLastQueryParams(params: Params) {
-    this.lastQueryParams = params;
+    const h = this.getQueryHistory();
+    localStorage.setItem("queryHistory", JSON.stringify(h.unshift(params).toJS()));
   }
 
-  getLastQueryParams(): Object {
-    return this.lastQueryParams;
+  getLastQueryParams(): Params {
+    return this.getQueryHistory().first();
+  }
+
+  getQueryHistory(): List<Params> {
+    return List(JSON.parse(localStorage.getItem("queryHistory")) || []);
   }
 
 }
