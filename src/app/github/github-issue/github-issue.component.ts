@@ -23,6 +23,7 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
   @Input() private issue: GithubIssue;
   @Input() private selected: boolean;
   @Output() private select = new EventEmitter();
+  @Output() private clickLabel = new EventEmitter();
 
   private fadeInState: string = "inactive";
 
@@ -42,6 +43,10 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
     const w = Color('white');
     const p = (luminanace(w) + 0.05)/(luminanace(c) + 0.05);
     return p <= 4 ? "#1c2733" : "white";
+  }
+
+  onClickLabel(label: Object) {
+    this.clickLabel.emit(label);
   }
 }
 

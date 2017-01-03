@@ -80,7 +80,7 @@
     </a>
   </div>
   <div class="issue-list-cell labels">
-    <li *ngFor="let label of issue.labels">
+    <li *ngFor="let label of issue.labels" (click)="onClickLabel(label)" style="cursor: pointer">
       <span class="label" [ngStyle]="{backgroundColor: '#' + label.color, color: labelColor(label.color)}">{{label.name}}</span>
     </li>
   </div>

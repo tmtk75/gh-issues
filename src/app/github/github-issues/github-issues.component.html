@@ -40,7 +40,10 @@
 
     <div *ngIf="searchResult.issues.length > 0">
       <li *ngFor="let issue of searchResult.issues" class="github-issue">
-        <github-issue [issue]="issue" [selected]="isSelected(issue)" (select)="onSelect($event)"></github-issue>
+        <github-issue [issue]="issue"
+          [selected]="isSelected(issue)"
+          (select)="onSelect($event)"
+          (clickLabel)="onClickLabel($event)"></github-issue>
       </li>
     </div>
 

@@ -47,10 +47,7 @@ export class GithubIssuesComponent implements OnInit {
 
     const node = document.getElementById("search-form.search-count");
     new MutationObserver(mutations =>
-      mutations.forEach(_ => {
-        this.searchCountWidth = `${30 + 7 + node.clientWidth}px`;  // See .scss file for `30 + 7`
-        console.log("searchCountWidth:", this.searchCountWidth)
-      })
+      mutations.forEach(_ => this.searchCountWidth = `${30 + 7 + node.clientWidth}px`)  // See .scss file for `30 + 7`
     ).observe(node, {characterData: true, subtree: true});
   }
 
@@ -105,4 +102,8 @@ export class GithubIssuesComponent implements OnInit {
     {text: "Assigned",  query: "is:open is:issue assignee:<login>"},
     {text: "Mentioned", query: "is:open is:issue mentions:<login>"},
   ]
+
+  onClickLabel(label: Object) {
+    this.selectQuery({q: `is:open is:issue label:"${label['name']}"`});
+  }
 }
