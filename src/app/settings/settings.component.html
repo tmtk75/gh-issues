@@ -3,11 +3,11 @@
     <nav class="menu">
       <span class="menu-heading">Personal settings</span>
       <a class="menu-item"
-        [ngClass]="navigationEnd.url.match('/account') ? 'selected' : ''"
+        [ngClass]="navigationEnd.urlAfterRedirects.match('/account') ? 'selected' : ''"
         routerLink="account"
         >Account</a>
       <a class="menu-item"
-        [ngClass]="navigationEnd.url.match('/tokens') ? 'selected' : ''"
+        [ngClass]="navigationEnd.urlAfterRedirects.match('/tokens') ? 'selected' : ''"
         routerLink="tokens"
         >Access tokens</a>
     </nav>
