@@ -6,9 +6,10 @@
     <nav class="menu">
       <span class="menu-heading">Query history</span>
       <a *ngFor="let query of appService.getQueryHistory()"
-        class="menu-item" _class="css-truncate css-truncate-target tooltipped tooltipped-n"
-        [attr.aria-label]="query.q"
-        >{{query.q}}</a>
+        class="menu-item"
+        (click)="selectQuery(query)">
+        {{query.q}}
+      </a>
     </nav>
   </div>
 

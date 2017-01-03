@@ -55,11 +55,11 @@ export class GithubIssuesComponent implements OnInit {
     if (!q) {
       return;
     }
-    this.appService.saveLastQueryParams({q, page});
     this.service.searchIssues(q, page)
       .subscribe(result => {
         this.searchResult = result;
         this.error = null;
+        this.appService.saveLastQueryParams({q, page});
       }, (err) => this.error = err);
   }
 
@@ -73,5 +73,11 @@ export class GithubIssuesComponent implements OnInit {
     } else {
       this.appService.unselectIssue(e.issue.id);
     }
+  }
+
+  private selectQuery(p: Params) {
+    //NOTE: I think routerLink with queryParams should work, but I couldn't.
+    //  e.g) <a routerLink="/issues" [queryParams]="query">...</a>
+    this._router.navigate([], {queryParams: p});
   }
 }
