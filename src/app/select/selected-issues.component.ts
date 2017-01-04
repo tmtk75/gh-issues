@@ -25,15 +25,7 @@ export class SelectedIssuesComponent implements OnInit {
 
   ngOnInit() {
     const a = this._app.getSelectedIssues().map(e => e.url);
-    const token = this._app.getAccessToken();
-    const headers = token ? {authorization: `token ${token}`} : {};
-
-    Rx.Observable.from(a)
-      .map(url => this._http.get(url, {headers: new Headers(headers)}))
-      .flatMap(e => e.map(res => res.json()))
-      .reduce((a, b) => a.push(b), List())
-      .map(e => e.toJS())
-      .subscribe(e => this.issues = e)
+    this._gh.getIssues(a).subscribe(e => this.issues = e);
   }
 
 }

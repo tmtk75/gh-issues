@@ -2,8 +2,7 @@
   <div class="one-third column">
     <ul>
       <li *ngFor="let issue of issues">
-        {{issue.id}}
-        {{issue.url}}
+        {{issue.title}} {{issue.repository.full_name}}#{{issue.number}}
       </li>
     </ul>
   </div>

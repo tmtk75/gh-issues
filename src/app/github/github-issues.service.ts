@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptionsArgs, Headers } from "@angular/http"
-import { Observable } from "rxjs/Observable"
+
+import * as Rx from 'rxjs/Rx'
+import { List } from 'immutable'
 
 import { AppService } from '../app.service';
 import { GithubIssue, GithubRepository, LinkHeader, LinkPage, GithubSearchResult } from "./github-issue";
@@ -44,7 +46,7 @@ export class GithubIssuesService {
     private _app: AppService,
   ) {}
 
-  searchIssues(query: string, page: number): Observable<GithubSearchResult> {
+  searchIssues(query: string, page: number): Rx.Observable<GithubSearchResult> {
     const token = this._app.getAccessToken();
     const headers = token ? {authorization: `token ${token}`} : {}
     const opts = {search: `q=${query}&page=${page}`, headers: new Headers(headers)}
@@ -57,6 +59,17 @@ export class GithubIssuesService {
         total_count: issues.total_count,
         issues: issues.items.map(e => Object.assign(e, {repository: toRepository(e)})),
       }))
+  }
+
+  getIssues(urls: string[]): Rx.Observable<GithubIssue[]> {
+    const token = this._app.getAccessToken();
+    const headers = token ? {authorization: `token ${token}`} : {};
+    return Rx.Observable.from(urls)
+      .map(url => this.http.get(url, {headers: new Headers(headers)}))
+      .flatMap(e => e.map(res => res.json()))
+      .map(e => Object.assign(e, {repository: toRepository(e)}))
+      .reduce((a, b) => a.push(b), List())
+      .map(e => e.toJS())
   }
 
 }
