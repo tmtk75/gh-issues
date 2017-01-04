@@ -20,5 +20,12 @@
       <span *ngIf="issues.length > 1">are</span>
       <span *ngIf="issues.length <= 1">is</span> selected.
     </header>
+
+    <div>
+      <button class="btn btn-outline btn-sm"
+        style="display: block; width: 100%"
+        type="button"
+        (click)="onClickClearAll()">Clear all</button>
+    </div>
   </div>
 </div>

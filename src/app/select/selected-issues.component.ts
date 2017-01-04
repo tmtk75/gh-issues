@@ -24,8 +24,17 @@ export class SelectedIssuesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.reload();
+  }
+
+  reload() {
     const a = this._app.getSelectedIssues().map(e => e.url);
     this._gh.getIssues(a).subscribe(e => this.issues = e);
+  }
+
+  onClickClearAll() {
+    this._app.clearAllSelections();
+    this.reload();
   }
 
 }

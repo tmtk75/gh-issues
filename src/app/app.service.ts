@@ -48,6 +48,11 @@ export class AppService {
     return m[i.id.toString()];
   }
 
+  clearAllSelections() {
+    localStorage.setItem("selectedID2issue", "{}");
+    localStorage.setItem("selectedIssueIDs", "[]");
+  }
+
   saveLastQueryParams(params: Params) {
     const h = this.getQueryHistory();
     if ((h.first() || {})['q'] == params['q']) {
@@ -72,4 +77,5 @@ export class AppService {
   saveDefaultOrganization(org: string) {
     localStorage.setItem("defaultOrganization", org);
   }
+
 }
