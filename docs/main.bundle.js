@@ -822,7 +822,7 @@ var GithubIssuesComponent = (function () {
         this.profileService.getGithubProfile(this.appService.getAccessToken()).subscribe(function (profile) {
             var q = e['query'].replace(/<login>/g, profile.login);
             _this.selectQuery({ q: q, page: 1 });
-        });
+        }, function (err) { return _this.error = err; });
     };
     GithubIssuesComponent.prototype.onClickLabel = function (label) {
         var q = "is:open is:issue label:\"" + label['name'] + "\"";
