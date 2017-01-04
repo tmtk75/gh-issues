@@ -86,7 +86,7 @@ export class GithubIssuesComponent implements OnInit {
 
   private selectQuery(p: Params) {
     //NOTE: I think routerLink with queryParams should work, but I couldn't.
-    //  e.g) <a routerLink="/issues" [queryParams]="query">...</a>
+    //  e.g) <a routerLink="/search" [queryParams]="query">...</a>
     this._router.navigate([], {queryParams: p});
   }
 

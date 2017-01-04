@@ -6,8 +6,8 @@ import { SettingsComponent } from "./settings/settings.component"
 import { NotFound404Component } from "./not-found404/not-found404.component"
 
 const appRoutes: Routes = [
-    {path: "", redirectTo: "issues", pathMatch: "full"},
-    {path: "issues", component: GithubIssuesComponent},
+    {path: "", redirectTo: "search", pathMatch: "full"},
+    {path: "search", component: GithubIssuesComponent},
     //{path: "settings", component: SettingsComponent},
     {path: "**", component: NotFound404Component},
 ]
