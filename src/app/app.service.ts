@@ -3,7 +3,7 @@ import { Params } from '@angular/router';
 
 import { GithubIssue } from "./github/github-issue";
 
-import { Set, List, fromJS } from "immutable";
+import { Set, List, fromJS, Map } from "immutable";
 
 @Injectable()
 export class AppService {
@@ -38,8 +38,14 @@ export class AppService {
     return fromJS(JSON.parse(localStorage.getItem("selectedIssueIDs")) || []).toSet();
   }
 
-  getSelectedIssues(): Map<string, GithubIssue> {
-    return fromJS(JSON.parse(localStorage.getItem("selectedID2issue")) || {});
+  getSelectedIssues(): GithubIssue[] {
+    const m = JSON.parse(localStorage.getItem("selectedID2issue")) || {};
+    return Object.keys(m).map(k => m[k]);
+  }
+
+  isSelected(i: GithubIssue): boolean {
+    const m = JSON.parse(localStorage.getItem("selectedID2issue")) || {};
+    return m[i.id.toString()];
   }
 
   saveLastQueryParams(params: Params) {

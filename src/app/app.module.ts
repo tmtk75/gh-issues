@@ -16,11 +16,13 @@ import { GithubIssuesModule } from './github/github-issues/github-issues.module'
 
 import { AppService } from './app.service';
 import { GithubProfileService } from './github/github-profile.service';
+import { SelectedIssuesComponent } from './select/selected-issues.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFound404Component,
+    SelectedIssuesComponent,
   ],
   imports: [
     BrowserModule,
