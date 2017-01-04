@@ -15,7 +15,7 @@ import { List } from 'immutable'
 })
 export class SelectedIssuesComponent implements OnInit {
 
-  issues: GithubIssue[];
+  issues: GithubIssue[] = [];
 
   constructor(
     private _http: Http,

@@ -1,12 +1,24 @@
-<div class="columns">
-  <div class="one-third column">
-    <ul>
-      <li *ngFor="let issue of issues">
-        {{issue.title}} {{issue.repository.full_name}}#{{issue.number}}
+<div *ngIf="issues.length == 0" class="blankslate">
+  <h3>No issues were selected.</h3>
+  <p>Please select issues <a routerLink="/search">here</a>.</p>
+</div>
+
+<div *ngIf="issues.length > 0" class="columns">
+
+  <div class="two-thirds column">
+    <ul class="issues">
+      <li *ngFor="let issue of issues" class="issue">
+        <div class="title"><a href="#">{{issue.title}}</a></div>
+        <span class="issue-meta text-small">{{issue.repository.full_name}}#{{issue.number}}</span>
       </li>
     </ul>
   </div>
-  <div class="two-thirds column">
-    a
+
+  <div class="one-third column">
+    <header class="header my-2">
+      {{issues.length}} issue<span *ngIf="issues.length > 1">s</span>
+      <span *ngIf="issues.length > 1">are</span>
+      <span *ngIf="issues.length <= 1">is</span> selected.
+    </header>
   </div>
 </div>
