@@ -1,10 +1,10 @@
-import { NgSandboxPage } from './app.po';
+import { GHIssuesPage } from './app.po';
 
-describe('ng-sandbox App', function() {
-  let page: NgSandboxPage;
+describe('gh-issues App', function() {
+  let page: GHIssuesPage;
 
   beforeEach(() => {
-    page = new NgSandboxPage();
+    page = new GHIssuesPage();
   });
 
   it('should display message saying app works', () => {

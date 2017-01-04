@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class NgSandboxPage {
+export class GHIssuesPage {
   navigateTo() {
     return browser.get('/');
   }
