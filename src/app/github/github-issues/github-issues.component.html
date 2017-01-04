@@ -24,7 +24,8 @@
       <input class="form-control input-block search-input"
         formControlName="query"
         [ngStyle]="{'padding-left': searchCountWidth}"
-        #input (keyup.enter)="onEnterQuery(input.value)" />
+        #input (keyup.enter)="onEnterQuery(input.value)"
+        placeholder="GitHub search syntax is available" />
       <svg version="1.1" width="16" height="16" viewBox="0 0 16 16" class="octicon octicon-search search-icon" aria-hidden="true">
         <use xlink:href="#search" />
       </svg>
