@@ -1,4 +1,5 @@
 import * as Color from "color";
+import * as Rx from 'rxjs/Rx';
 
 import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/core';
@@ -24,10 +25,18 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
   @Input() private selected: boolean;
   @Output() private select = new EventEmitter();
   @Output() private clickLabel = new EventEmitter();
+  @Output() private hover = new EventEmitter();
 
   private fadeInState: string = "inactive";
 
   ngOnInit() {
+    this.hoverSubject.subscribe(e => this.hover.emit(e));
+  }
+
+  private hoverSubject = new Rx.Subject<{enter: boolean, issue: GithubIssue}>();
+
+  onHover(enter: boolean, issue: GithubIssue) {
+    this.hoverSubject.next({enter, issue});
   }
 
   ngAfterViewInit() {

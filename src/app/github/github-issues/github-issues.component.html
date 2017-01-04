@@ -43,6 +43,7 @@
         <github-issue [issue]="issue"
           [selected]="isSelected(issue)"
           (select)="onSelect($event)"
+          (hover)="onHover($event)"
           (clickLabel)="onClickLabel($event)"></github-issue>
       </li>
     </div>

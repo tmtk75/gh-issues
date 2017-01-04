@@ -111,4 +111,8 @@ export class GithubIssuesComponent implements OnInit {
     }
     this.selectQuery({q});
   }
+
+  onHover(e: Object) {
+    console.log(e);
+  }
 }
