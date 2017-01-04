@@ -40,8 +40,8 @@
         opened
         <time dateTime={{issue.created_at}}
           htmlIs="relative-time">{{issue.created_at | fromNow}}</time> by
-        <a href="#"
-          (click)="onClick(issue)"
+        <a [href]="'https://github.com/issues?q=author%3A' + issue.user.login + '+is%3Aopen'"
+          target="https://github.com/issues"
           [attr.aria-label]="'View all issues opened by ' + issue.user.login"
           class="tooltipped tooltipped-s muted-link">
           {{issue.user.login}}
