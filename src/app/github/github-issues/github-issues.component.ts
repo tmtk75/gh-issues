@@ -91,7 +91,8 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   onClickPredefinedQuery(e: Object) {
-    this.profileService.getGithubProfile(this.appService.getAccessToken()).subscribe(profile => {
+    const token = this.appService.getAccessToken();
+    this.profileService.getGithubProfile(token).subscribe(profile => {
       const q = e['query'].replace(/<login>/g, profile.login);
       this.selectQuery({q, page: 1});
     }, (err) => this.error = err)

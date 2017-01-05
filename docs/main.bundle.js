@@ -819,7 +819,8 @@ var GithubIssuesComponent = (function () {
     };
     GithubIssuesComponent.prototype.onClickPredefinedQuery = function (e) {
         var _this = this;
-        this.profileService.getGithubProfile(this.appService.getAccessToken()).subscribe(function (profile) {
+        var token = this.appService.getAccessToken();
+        this.profileService.getGithubProfile(token).subscribe(function (profile) {
             var q = e['query'].replace(/<login>/g, profile.login);
             _this.selectQuery({ q: q, page: 1 });
         }, function (err) { return _this.error = err; });
@@ -1983,20 +1984,31 @@ var View_AppComponent0 = (function (_super) {
         this._el_15 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_14, 'a', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'routerLink', '/settings'), null);
         this._RouterLinkWithHref_15_3 = new __WEBPACK_IMPORTED_MODULE_9__gendir_node_modules_angular_router_src_directives_router_link_ngfactory__["a" /* Wrapper_RouterLinkWithHref */](this.parentView.injectorGet(__WEBPACK_IMPORTED_MODULE_12__angular_router_src_router__["a" /* Router */], this.parentIndex), this.parentView.injectorGet(__WEBPACK_IMPORTED_MODULE_13__angular_router_src_router_state__["b" /* ActivatedRoute */], this.parentIndex), this.parentView.injectorGet(__WEBPACK_IMPORTED_MODULE_14__angular_common_src_location_location_strategy__["a" /* LocationStrategy */], this.parentIndex));
         this._text_16 = this.renderer.createText(this._el_15, 'Settings', null);
-        this._text_17 = this.renderer.createText(this._el_4, '\n    ', null);
-        this._text_18 = this.renderer.createText(this._el_2, '\n\n    ', null);
-        this._el_19 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_2, 'router-outlet', __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["EMPTY_INLINE_ARRAY"], null);
-        this._vc_19 = new __WEBPACK_IMPORTED_MODULE_10__angular_core_src_linker_view_container__["a" /* ViewContainer */](19, 2, this, this._el_19);
-        this._RouterOutlet_19_5 = new __WEBPACK_IMPORTED_MODULE_11__gendir_node_modules_angular_router_src_directives_router_outlet_ngfactory__["a" /* Wrapper_RouterOutlet */](this.parentView.injectorGet(__WEBPACK_IMPORTED_MODULE_15__angular_router_src_router_outlet_map__["a" /* RouterOutletMap */], this.parentIndex), this._vc_19.vcRef, this.parentView.injectorGet(__WEBPACK_IMPORTED_MODULE_16__angular_core_src_linker_component_factory_resolver__["a" /* ComponentFactoryResolver */], this.parentIndex), null);
-        this._text_20 = this.renderer.createText(this._el_2, '\n  ', null);
-        this._text_21 = this.renderer.createText(this._el_0, '\n\n  ', null);
-        this._el_22 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_0, 'footer', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'class', 'footer'), null);
-        this._text_23 = this.renderer.createText(this._el_22, '\n    © 2017 ', null);
-        this._el_24 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_22, 'a', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'href', 'https://github.com/tmtk75'), null);
-        this._text_25 = this.renderer.createText(this._el_24, 'tmtk75', null);
-        this._text_26 = this.renderer.createText(this._el_22, '\n  ', null);
-        this._text_27 = this.renderer.createText(this._el_0, '\n\n', null);
-        this._text_28 = this.renderer.createText(parentRenderNode, '\n', null);
+        this._text_17 = this.renderer.createText(this._el_4, '\n      ', null);
+        this._el_18 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_4, 'li', __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["EMPTY_INLINE_ARRAY"], null);
+        this._text_19 = this.renderer.createText(this._el_18, '\n        ', null);
+        this._el_20 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_18, 'a', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray4"](4, 'href', 'https://github.com/tmtk75/gh-issues', 'target', 'repository'), null);
+        this._text_21 = this.renderer.createText(this._el_20, '\n          ', null);
+        this._el_22 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_20, ':svg:svg', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray16"](10, 'class', 'octicon', 'height', '18', 'version', '1.1', 'viewBox', '0 0 18 18', 'width', '18'), null);
+        this._text_23 = this.renderer.createText(this._el_22, '\n            ', null);
+        this._el_24 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_22, ':svg:use', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, ':xlink:href', '#mark-github'), null);
+        this._text_25 = this.renderer.createText(this._el_22, '\n          ', null);
+        this._text_26 = this.renderer.createText(this._el_20, '\n        ', null);
+        this._text_27 = this.renderer.createText(this._el_18, '\n      ', null);
+        this._text_28 = this.renderer.createText(this._el_4, '\n    ', null);
+        this._text_29 = this.renderer.createText(this._el_2, '\n\n    ', null);
+        this._el_30 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_2, 'router-outlet', __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["EMPTY_INLINE_ARRAY"], null);
+        this._vc_30 = new __WEBPACK_IMPORTED_MODULE_10__angular_core_src_linker_view_container__["a" /* ViewContainer */](30, 2, this, this._el_30);
+        this._RouterOutlet_30_5 = new __WEBPACK_IMPORTED_MODULE_11__gendir_node_modules_angular_router_src_directives_router_outlet_ngfactory__["a" /* Wrapper_RouterOutlet */](this.parentView.injectorGet(__WEBPACK_IMPORTED_MODULE_15__angular_router_src_router_outlet_map__["a" /* RouterOutletMap */], this.parentIndex), this._vc_30.vcRef, this.parentView.injectorGet(__WEBPACK_IMPORTED_MODULE_16__angular_core_src_linker_component_factory_resolver__["a" /* ComponentFactoryResolver */], this.parentIndex), null);
+        this._text_31 = this.renderer.createText(this._el_2, '\n  ', null);
+        this._text_32 = this.renderer.createText(this._el_0, '\n\n  ', null);
+        this._el_33 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_0, 'footer', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'class', 'footer'), null);
+        this._text_34 = this.renderer.createText(this._el_33, '\n    © 2017 ', null);
+        this._el_35 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_33, 'a', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'href', 'https://github.com/tmtk75'), null);
+        this._text_36 = this.renderer.createText(this._el_35, 'tmtk75', null);
+        this._text_37 = this.renderer.createText(this._el_33, '\n  ', null);
+        this._text_38 = this.renderer.createText(this._el_0, '\n\n', null);
+        this._text_39 = this.renderer.createText(parentRenderNode, '\n', null);
         var disposable_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["subscribeToRenderElement"](this, this._el_7, new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'click', null), this.eventHandler(this.handleEvent_7));
         var disposable_1 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["subscribeToRenderElement"](this, this._el_11, new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'click', null), this.eventHandler(this.handleEvent_11));
         var disposable_2 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["subscribeToRenderElement"](this, this._el_15, new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'click', null), this.eventHandler(this.handleEvent_15));
@@ -2019,9 +2031,9 @@ var View_AppComponent0 = (function (_super) {
             this._el_15,
             this._text_16,
             this._text_17,
-            this._text_18,
-            this._el_19,
-            this._text_20,
+            this._el_18,
+            this._text_19,
+            this._el_20,
             this._text_21,
             this._el_22,
             this._text_23,
@@ -2029,7 +2041,18 @@ var View_AppComponent0 = (function (_super) {
             this._text_25,
             this._text_26,
             this._text_27,
-            this._text_28
+            this._text_28,
+            this._text_29,
+            this._el_30,
+            this._text_31,
+            this._text_32,
+            this._el_33,
+            this._text_34,
+            this._el_35,
+            this._text_36,
+            this._text_37,
+            this._text_38,
+            this._text_39
         ]), [
             disposable_0,
             disposable_1,
@@ -2047,8 +2070,8 @@ var View_AppComponent0 = (function (_super) {
         if (((token === __WEBPACK_IMPORTED_MODULE_17__angular_router_src_directives_router_link__["b" /* RouterLinkWithHref */]) && ((15 <= requestNodeIndex) && (requestNodeIndex <= 16)))) {
             return this._RouterLinkWithHref_15_3.context;
         }
-        if (((token === __WEBPACK_IMPORTED_MODULE_18__angular_router_src_directives_router_outlet__["a" /* RouterOutlet */]) && (19 === requestNodeIndex))) {
-            return this._RouterOutlet_19_5.context;
+        if (((token === __WEBPACK_IMPORTED_MODULE_18__angular_router_src_directives_router_outlet__["a" /* RouterOutlet */]) && (30 === requestNodeIndex))) {
+            return this._RouterOutlet_30_5.context;
         }
         return notFoundResult;
     };
@@ -2064,18 +2087,18 @@ var View_AppComponent0 = (function (_super) {
         var currVal_15_0_0 = '/settings';
         this._RouterLinkWithHref_15_3.check_routerLink(currVal_15_0_0, throwOnChange, false);
         this._RouterLinkWithHref_15_3.ngDoCheck(this, this._el_15, throwOnChange);
-        this._RouterOutlet_19_5.ngDoCheck(this, this._el_19, throwOnChange);
-        this._vc_19.detectChangesInNestedViews(throwOnChange);
+        this._RouterOutlet_30_5.ngDoCheck(this, this._el_30, throwOnChange);
+        this._vc_30.detectChangesInNestedViews(throwOnChange);
         this._RouterLinkWithHref_7_3.checkHost(this, this, this._el_7, throwOnChange);
         this._RouterLinkWithHref_11_3.checkHost(this, this, this._el_11, throwOnChange);
         this._RouterLinkWithHref_15_3.checkHost(this, this, this._el_15, throwOnChange);
     };
     View_AppComponent0.prototype.destroyInternal = function () {
-        this._vc_19.destroyNestedViews();
+        this._vc_30.destroyNestedViews();
         this._RouterLinkWithHref_7_3.ngOnDestroy();
         this._RouterLinkWithHref_11_3.ngOnDestroy();
         this._RouterLinkWithHref_15_3.ngOnDestroy();
-        this._RouterOutlet_19_5.ngOnDestroy();
+        this._RouterOutlet_30_5.ngOnDestroy();
     };
     View_AppComponent0.prototype.handleEvent_7 = function (eventName, $event) {
         this.markPathToRootAsCheckOnce();
