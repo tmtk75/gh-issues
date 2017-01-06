@@ -13,4 +13,4 @@ const appRoutes: Routes = [
     {path: "**", component: NotFound404Component},
 ]
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, {useHash: true});
