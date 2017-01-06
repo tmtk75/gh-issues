@@ -2705,7 +2705,7 @@ var AppModuleInjector = (function (_super) {
     Object.defineProperty(AppModuleInjector.prototype, "_ROUTER_CONFIGURATION_49", {
         get: function () {
             if ((this.__ROUTER_CONFIGURATION_49 == null)) {
-                (this.__ROUTER_CONFIGURATION_49 = {});
+                (this.__ROUTER_CONFIGURATION_49 = { useHash: true });
             }
             return this.__ROUTER_CONFIGURATION_49;
         },
@@ -7807,7 +7807,7 @@ var appRoutes = [
     { path: "select", component: __WEBPACK_IMPORTED_MODULE_2__select_selected_issues_component__["a" /* SelectedIssuesComponent */] },
     { path: "**", component: __WEBPACK_IMPORTED_MODULE_3__not_found404_not_found404_component__["a" /* NotFound404Component */] },
 ];
-var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModule */].forRoot(appRoutes);
+var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["c" /* RouterModule */].forRoot(appRoutes, { useHash: true });
 //# sourceMappingURL=/Users/tsakuma/.ghq/github.com/tmtk75/gh-issues/src/app.routes.js.map
 
 /***/ },
