@@ -119,7 +119,8 @@ export class GithubIssuesComponent implements OnInit {
     this.issueDescStyle = {
       display: "block",
       position: "fixed",
-      top: `${e.clientY - 16}px`, left: `${e.clientX + 8}px`,
+      left: `${e.clientX + 8}px`,
+      top: `${e.clientY - 16}px`,
     };
   }
 
