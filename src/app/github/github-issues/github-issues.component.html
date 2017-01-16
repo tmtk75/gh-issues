@@ -61,15 +61,18 @@
 
 </div>
 
-<div *ngIf="focusedIssue" class="the-issue" [ngStyle]="issueDescStyle">
-  <div class="header">
-    <span class="title">{{ focusedIssue.title }}</span>
-    <span class="number">#{{ focusedIssue.number }}</span>
+<div class="container" [ngStyle]="issueDescStyle">
+  <div *ngIf="focusedIssue" class="the-issue markdown-body comment-body">
+    <div class="header">
+      <span class="title">{{ focusedIssue.title }}</span>
+      <span class="number">#{{ focusedIssue.number }}</span>
+    </div>
+    <div class="meta">
+      <span class="author">{{ focusedIssue.user.login }}</span> opened this issue
+      <time htmlIs="relative-time">{{ focusedIssue.created_at | fromNow }}</time>
+      · {{ focusedIssue.comments }} comments
+    </div>
+    <div *ngIf="focusedIssue.body" class="description" [innerHTML]="focusedIssue.body | markdown"></div>
+    <div *ngIf="!focusedIssue.body" class="description">No description provided.</div>
   </div>
-  <div class="meta">
-    <span class="author">{{ focusedIssue.user.login }}</span> opened this issue
-    <time htmlIs="relative-time">{{ focusedIssue.created_at | fromNow }}</time>
-    · {{ focusedIssue.comments }} comments
-  </div>
-  <div class="body" [innerHTML]="focusedIssue.body | markdown"></div>
 </div>

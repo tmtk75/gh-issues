@@ -69,7 +69,6 @@ export class GithubIssuesComponent implements OnInit {
         this.searchResult = result;
         this.error = null;
         this.appService.saveLastQueryParams({q, page});
-        this.focusedIssue = result.issues[0];  //TEST
       }, (err) => this.error = err);
   }
 
@@ -115,7 +114,6 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   onHover(event: any) {
-    console.log("onHover:", event)
     const e: MouseEvent = event.event;
     this.focusedIssue = event.issue;
     this.issueDescStyle = {
@@ -126,7 +124,6 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   onHide(e: any) {
-    console.log("onHide:", e)
     this.issueDescStyle = {display: "none"};
   }
 
