@@ -8,6 +8,7 @@ import { GithubPaginationComponent } from "../github-pagination/github-paginatio
 import { GithubIssuesService } from "../github-issues.service"
 
 import { FromNowPipe } from '../github-issue/from-now.pipe';
+import { MarkdownPipe } from './markdown.pipe';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { FromNowPipe } from '../github-issue/from-now.pipe';
     GithubIssueComponent,
     GithubPaginationComponent,
     FromNowPipe,
+    MarkdownPipe,
   ]
 })
 export class GithubIssuesModule { }

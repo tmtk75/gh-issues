@@ -71,5 +71,5 @@
     <time htmlIs="relative-time">{{ focusedIssue.created_at | fromNow }}</time>
     · {{ focusedIssue.comments }} comments
   </div>
-  <div class="body">{{ focusedIssue.body }}</div>
+  <div class="body" [innerHTML]="focusedIssue.body | markdown"></div>
 </div>
