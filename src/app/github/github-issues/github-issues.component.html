@@ -44,7 +44,9 @@
         <github-issue [issue]="issue"
           [selected]="isSelected(issue)"
           (select)="onSelect($event)"
-          (clickLabel)="onClickLabel($event)"></github-issue>
+          (clickLabel)="onClickLabel($event)"
+          (hover)="onHover($event)"
+          (hide)="onHide($event)"></github-issue>
       </li>
     </div>
 
@@ -57,4 +59,17 @@
     </div>
   </div>
 
+</div>
+
+<div *ngIf="focusedIssue" class="the-issue" [ngStyle]="issueDescStyle">
+  <div class="header">
+    <span class="title">{{ focusedIssue.title }}</span>
+    <span class="number">#{{ focusedIssue.number }}</span>
+  </div>
+  <div class="meta">
+    <span class="author">{{ focusedIssue.user.login }}</span> opened this issue
+    <time htmlIs="relative-time">{{ focusedIssue.created_at | fromNow }}</time>
+    · {{ focusedIssue.comments }} comments
+  </div>
+  <div class="body">{{ focusedIssue.body }}</div>
 </div>

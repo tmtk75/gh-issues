@@ -69,6 +69,7 @@ export class GithubIssuesComponent implements OnInit {
         this.searchResult = result;
         this.error = null;
         this.appService.saveLastQueryParams({q, page});
+        this.focusedIssue = result.issues[0];  //TEST
       }, (err) => this.error = err);
   }
 
@@ -112,4 +113,23 @@ export class GithubIssuesComponent implements OnInit {
     }
     this.selectQuery({q});
   }
+
+  onHover(event: any) {
+    console.log("onHover:", event)
+    const e: MouseEvent = event.event;
+    this.focusedIssue = event.issue;
+    this.issueDescStyle = {
+      display: "block",
+      position: "fixed",
+      top: `${e.clientY - 16}px`, left: `${e.clientX + 8}px`,
+    };
+  }
+
+  onHide(e: any) {
+    console.log("onHide:", e)
+    this.issueDescStyle = {display: "none"};
+  }
+
+  private focusedIssue;
+  private issueDescStyle: any = {} //{display: "none"};
 }

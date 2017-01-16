@@ -1,7 +1,9 @@
+import * as Rx from 'rxjs';
 import * as Color from "color";
 
 import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/core';
+import { HostListener, ElementRef, ViewChild } from '@angular/core';
 
 import { GithubIssue } from "../github-issue"
 
@@ -22,13 +24,36 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
 
   @Input() private issue: GithubIssue;
   @Input() private selected: boolean;
+
   @Output() private select = new EventEmitter();
   @Output() private clickLabel = new EventEmitter();
+  @Output() private hover = new EventEmitter();
+  @Output() private hide = new EventEmitter();
 
   private fadeInState: string = "inactive";
 
+  @ViewChild('title') titleRef: ElementRef;
+
   ngOnInit() {
+    const t = this.titleRef.nativeElement
+    const enter = Rx.Observable.fromEvent(t, "mouseenter")
+    const leave = Rx.Observable.fromEvent(t, "mouseleave")
+    const move  = Rx.Observable.fromEvent(t, "mousemove")
+    const entered = enter.map(e => true).merge(leave.map(e => false))
+    const hover = Rx.Observable.combineLatest(move, entered)
+      .debounceTime(500)
+      .filter(([e, b]) => b)
+      .map(([e, _]) => e)
+
+    hover.subscribe(e => this.hover.emit({issue: this.issue, event: e}));
+    leave.subscribe(e => this.hide.emit({issue: this.issue, event: e}))
   }
+
+  // @HostListener('document:keyup', ['$event'])
+  // @HostListener('document:keydown', ['$event'])
+  // onKeyUp(ev:KeyboardEvent) {
+  //   console.log(`The user just pressed ${ev.key}!`);
+  // }
 
   ngAfterViewInit() {
     setTimeout(() => this.fadeInState = "active", 0);
