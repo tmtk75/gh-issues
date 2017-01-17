@@ -41,7 +41,7 @@ export class GithubIssueComponent implements OnInit, AfterViewInit {
     const move  = Rx.Observable.fromEvent(t, "mousemove")
     const entered = enter.map(e => true).merge(leave.map(e => false))
     const hover = Rx.Observable.combineLatest(move, entered)
-      .debounceTime(500)
+      .debounceTime(300)
       .filter(([e, b]) => b)
       .map(([e, _]) => e)
 
