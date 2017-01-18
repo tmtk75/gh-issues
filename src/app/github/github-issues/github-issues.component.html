@@ -68,7 +68,8 @@
       <span class="number">#{{ focusedIssue.number }}</span>
     </div>
     <div class="meta">
-      <span class="author">{{ focusedIssue.user.login }}</span> opened this issue
+      <img width="20" height="20" [src]="focusedIssue.user.avatar_url + '&amp;s=32'" />
+      <span class="author">{{ focusedIssue.user.login }}</span>&nbsp;opened this issue
       <time htmlIs="relative-time">{{ focusedIssue.created_at | fromNow }}</time>
       · {{ focusedIssue.comments }} comments
     </div>
