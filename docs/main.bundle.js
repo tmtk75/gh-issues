@@ -866,6 +866,7 @@ var GithubIssuesComponent = (function () {
         this.appService = appService;
         this.searchResult = { linkPage: null, linkHeader: null, issues: [], total_count: 0 };
         this.searchCountWidth = "0px";
+        this.debug = false;
         this.predefinedQueryButtons = [
             { text: "Created", query: "is:open is:issue author:<login>" },
             { text: "Assigned", query: "is:open is:issue assignee:<login>" },
@@ -910,6 +911,9 @@ var GithubIssuesComponent = (function () {
             _this.searchResult = result;
             _this.error = null;
             _this.appService.saveLastQueryParams({ q: q, page: page });
+            if (_this.debug) {
+                _this.focusedIssue = _this.searchResult.issues[0];
+            }
         }, function (err) { return _this.error = err; });
     };
     GithubIssuesComponent.prototype.isSelected = function (i) {
@@ -945,17 +949,13 @@ var GithubIssuesComponent = (function () {
         this.selectQuery({ q: q });
     };
     GithubIssuesComponent.prototype.onHover = function (event) {
-        var e = event.event;
         this.focusedIssue = event.issue;
-        this.issueDescStyle = {
-            display: "block",
-            position: "fixed",
-            left: (e.clientX + 8) + "px",
-            top: (e.clientY - 16) + "px",
-        };
+        this.issueDescStyle = { display: "block" };
     };
     GithubIssuesComponent.prototype.onHide = function (e) {
-        this.issueDescStyle = { display: "none" };
+        if (!this.debug) {
+            this.issueDescStyle = { display: "none" };
+        }
     };
     GithubIssuesComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_3" /* Component */])({
@@ -4993,11 +4993,12 @@ var View_GithubIssuesComponent8 = (function (_super) {
     __extends(View_GithubIssuesComponent8, _super);
     function View_GithubIssuesComponent8(viewUtils, parentView, parentIndex, parentElement, declaredViewContainer) {
         _super.call(this, View_GithubIssuesComponent8, renderType_GithubIssuesComponent, __WEBPACK_IMPORTED_MODULE_4__angular_core_src_linker_view_type__["a" /* ViewType */].EMBEDDED, viewUtils, parentView, parentIndex, parentElement, __WEBPACK_IMPORTED_MODULE_5__angular_core_src_change_detection_constants__["b" /* ChangeDetectorStatus */].CheckAlways, declaredViewContainer);
-        this._expr_30 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
-        this._expr_31 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
         this._expr_32 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
         this._expr_33 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
+        this._expr_34 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
         this._expr_35 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
+        this._expr_36 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
+        this._expr_38 = __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["a" /* UNINITIALIZED */];
     }
     View_GithubIssuesComponent8.prototype.createInternal = function (rootSelector) {
         this._el_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, null, 'div', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'class', 'the-issue markdown-body comment-body'), null);
@@ -5013,23 +5014,25 @@ var View_GithubIssuesComponent8 = (function (_super) {
         this._text_10 = this.renderer.createText(this._el_0, '\n    ', null);
         this._el_11 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_0, 'div', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'class', 'meta'), null);
         this._text_12 = this.renderer.createText(this._el_11, '\n      ', null);
-        this._el_13 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_11, 'span', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'class', 'author'), null);
-        this._text_14 = this.renderer.createText(this._el_13, '', null);
-        this._text_15 = this.renderer.createText(this._el_11, ' opened this issue\n      ', null);
-        this._el_16 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_11, 'time', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'htmlIs', 'relative-time'), null);
-        this._text_17 = this.renderer.createText(this._el_16, '', null);
-        this._text_18 = this.renderer.createText(this._el_11, '', null);
-        this._text_19 = this.renderer.createText(this._el_0, '\n    ', null);
-        this._anchor_20 = this.renderer.createTemplateAnchor(this._el_0, null);
-        this._vc_20 = new __WEBPACK_IMPORTED_MODULE_14__angular_core_src_linker_view_container__["a" /* ViewContainer */](20, 0, this, this._anchor_20);
-        this._TemplateRef_20_5 = new __WEBPACK_IMPORTED_MODULE_25__angular_core_src_linker_template_ref__["a" /* TemplateRef_ */](this, 20, this._anchor_20);
-        this._NgIf_20_6 = new __WEBPACK_IMPORTED_MODULE_15__gendir_node_modules_angular_common_src_directives_ng_if_ngfactory__["a" /* Wrapper_NgIf */](this._vc_20.vcRef, this._TemplateRef_20_5);
+        this._el_13 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_11, 'img', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray4"](4, 'height', '20', 'width', '20'), null);
+        this._text_14 = this.renderer.createText(this._el_11, '\n      ', null);
+        this._el_15 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_11, 'span', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'class', 'author'), null);
+        this._text_16 = this.renderer.createText(this._el_15, '', null);
+        this._text_17 = this.renderer.createText(this._el_11, ' opened this issue\n      ', null);
+        this._el_18 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["createRenderElement"](this.renderer, this._el_11, 'time', new __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["InlineArray2"](2, 'htmlIs', 'relative-time'), null);
+        this._text_19 = this.renderer.createText(this._el_18, '', null);
+        this._text_20 = this.renderer.createText(this._el_11, '', null);
         this._text_21 = this.renderer.createText(this._el_0, '\n    ', null);
         this._anchor_22 = this.renderer.createTemplateAnchor(this._el_0, null);
         this._vc_22 = new __WEBPACK_IMPORTED_MODULE_14__angular_core_src_linker_view_container__["a" /* ViewContainer */](22, 0, this, this._anchor_22);
         this._TemplateRef_22_5 = new __WEBPACK_IMPORTED_MODULE_25__angular_core_src_linker_template_ref__["a" /* TemplateRef_ */](this, 22, this._anchor_22);
         this._NgIf_22_6 = new __WEBPACK_IMPORTED_MODULE_15__gendir_node_modules_angular_common_src_directives_ng_if_ngfactory__["a" /* Wrapper_NgIf */](this._vc_22.vcRef, this._TemplateRef_22_5);
-        this._text_23 = this.renderer.createText(this._el_0, '\n  ', null);
+        this._text_23 = this.renderer.createText(this._el_0, '\n    ', null);
+        this._anchor_24 = this.renderer.createTemplateAnchor(this._el_0, null);
+        this._vc_24 = new __WEBPACK_IMPORTED_MODULE_14__angular_core_src_linker_view_container__["a" /* ViewContainer */](24, 0, this, this._anchor_24);
+        this._TemplateRef_24_5 = new __WEBPACK_IMPORTED_MODULE_25__angular_core_src_linker_template_ref__["a" /* TemplateRef_ */](this, 24, this._anchor_24);
+        this._NgIf_24_6 = new __WEBPACK_IMPORTED_MODULE_15__gendir_node_modules_angular_common_src_directives_ng_if_ngfactory__["a" /* Wrapper_NgIf */](this._vc_24.vcRef, this._TemplateRef_24_5);
+        this._text_25 = this.renderer.createText(this._el_0, '\n  ', null);
         this._pipe_fromNow_0_0 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["pureProxy1"](this.parentView._pipe_fromNow_0.transform.bind(this.parentView._pipe_fromNow_0));
         this.init(this._el_0, (this.renderer.directRenderer ? null : [
             this._el_0,
@@ -5047,83 +5050,90 @@ var View_GithubIssuesComponent8 = (function (_super) {
             this._text_12,
             this._el_13,
             this._text_14,
-            this._text_15,
-            this._el_16,
+            this._el_15,
+            this._text_16,
             this._text_17,
-            this._text_18,
+            this._el_18,
             this._text_19,
-            this._anchor_20,
+            this._text_20,
             this._text_21,
             this._anchor_22,
-            this._text_23
+            this._text_23,
+            this._anchor_24,
+            this._text_25
         ]), null);
         return null;
     };
     View_GithubIssuesComponent8.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === __WEBPACK_IMPORTED_MODULE_25__angular_core_src_linker_template_ref__["b" /* TemplateRef */]) && (20 === requestNodeIndex))) {
-            return this._TemplateRef_20_5;
-        }
-        if (((token === __WEBPACK_IMPORTED_MODULE_30__angular_common_src_directives_ng_if__["a" /* NgIf */]) && (20 === requestNodeIndex))) {
-            return this._NgIf_20_6.context;
-        }
         if (((token === __WEBPACK_IMPORTED_MODULE_25__angular_core_src_linker_template_ref__["b" /* TemplateRef */]) && (22 === requestNodeIndex))) {
             return this._TemplateRef_22_5;
         }
         if (((token === __WEBPACK_IMPORTED_MODULE_30__angular_common_src_directives_ng_if__["a" /* NgIf */]) && (22 === requestNodeIndex))) {
             return this._NgIf_22_6.context;
         }
+        if (((token === __WEBPACK_IMPORTED_MODULE_25__angular_core_src_linker_template_ref__["b" /* TemplateRef */]) && (24 === requestNodeIndex))) {
+            return this._TemplateRef_24_5;
+        }
+        if (((token === __WEBPACK_IMPORTED_MODULE_30__angular_common_src_directives_ng_if__["a" /* NgIf */]) && (24 === requestNodeIndex))) {
+            return this._NgIf_24_6.context;
+        }
         return notFoundResult;
     };
     View_GithubIssuesComponent8.prototype.detectChangesInternal = function (throwOnChange) {
         var valUnwrapper = new __WEBPACK_IMPORTED_MODULE_24__angular_core_src_change_detection_change_detection_util__["c" /* ValueUnwrapper */]();
-        var currVal_20_0_0 = this.parentView.context.focusedIssue.body;
-        this._NgIf_20_6.check_ngIf(currVal_20_0_0, throwOnChange, false);
-        this._NgIf_20_6.ngDoCheck(this, this._anchor_20, throwOnChange);
-        var currVal_22_0_0 = !this.parentView.context.focusedIssue.body;
+        var currVal_22_0_0 = this.parentView.context.focusedIssue.body;
         this._NgIf_22_6.check_ngIf(currVal_22_0_0, throwOnChange, false);
         this._NgIf_22_6.ngDoCheck(this, this._anchor_22, throwOnChange);
-        this._vc_20.detectChangesInNestedViews(throwOnChange);
+        var currVal_24_0_0 = !this.parentView.context.focusedIssue.body;
+        this._NgIf_24_6.check_ngIf(currVal_24_0_0, throwOnChange, false);
+        this._NgIf_24_6.ngDoCheck(this, this._anchor_24, throwOnChange);
         this._vc_22.detectChangesInNestedViews(throwOnChange);
-        var currVal_30 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '', this.parentView.context.focusedIssue.title, '');
-        if (__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_30, currVal_30)) {
-            this.renderer.setText(this._text_5, currVal_30);
-            this._expr_30 = currVal_30;
-        }
-        var currVal_31 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '#', this.parentView.context.focusedIssue.number, '');
-        if (__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_31, currVal_31)) {
-            this.renderer.setText(this._text_8, currVal_31);
-            this._expr_31 = currVal_31;
-        }
-        var currVal_32 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '', this.parentView.context.focusedIssue.user.login, '');
+        this._vc_24.detectChangesInNestedViews(throwOnChange);
+        var currVal_32 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '', this.parentView.context.focusedIssue.title, '');
         if (__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_32, currVal_32)) {
-            this.renderer.setText(this._text_14, currVal_32);
+            this.renderer.setText(this._text_5, currVal_32);
             this._expr_32 = currVal_32;
         }
-        valUnwrapper.reset();
-        var currVal_33 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '', valUnwrapper.unwrap(__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["castByValue"](this._pipe_fromNow_0_0, this.parentView._pipe_fromNow_0.transform)(this.parentView.context.focusedIssue.created_at)), '');
-        if ((valUnwrapper.hasWrappedValue || __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_33, currVal_33))) {
-            this.renderer.setText(this._text_17, currVal_33);
+        var currVal_33 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '#', this.parentView.context.focusedIssue.number, '');
+        if (__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_33, currVal_33)) {
+            this.renderer.setText(this._text_8, currVal_33);
             this._expr_33 = currVal_33;
         }
-        var currVal_35 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '\n      · ', this.parentView.context.focusedIssue.comments, ' comments\n    ');
+        var currVal_34 = (this.parentView.context.focusedIssue.user.avatar_url + '&s=32');
+        if (__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_34, currVal_34)) {
+            this.renderer.setElementProperty(this._el_13, 'src', this.viewUtils.sanitizer.sanitize(__WEBPACK_IMPORTED_MODULE_44__angular_core_src_security__["b" /* SecurityContext */].URL, currVal_34));
+            this._expr_34 = currVal_34;
+        }
+        var currVal_35 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '', this.parentView.context.focusedIssue.user.login, '');
         if (__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_35, currVal_35)) {
-            this.renderer.setText(this._text_18, currVal_35);
+            this.renderer.setText(this._text_16, currVal_35);
             this._expr_35 = currVal_35;
+        }
+        valUnwrapper.reset();
+        var currVal_36 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '', valUnwrapper.unwrap(__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["castByValue"](this._pipe_fromNow_0_0, this.parentView._pipe_fromNow_0.transform)(this.parentView.context.focusedIssue.created_at)), '');
+        if ((valUnwrapper.hasWrappedValue || __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_36, currVal_36))) {
+            this.renderer.setText(this._text_19, currVal_36);
+            this._expr_36 = currVal_36;
+        }
+        var currVal_38 = __WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["inlineInterpolate"](1, '\n      · ', this.parentView.context.focusedIssue.comments, ' comments\n    ');
+        if (__WEBPACK_IMPORTED_MODULE_2__angular_core_src_linker_view_utils__["checkBinding"](throwOnChange, this._expr_38, currVal_38)) {
+            this.renderer.setText(this._text_20, currVal_38);
+            this._expr_38 = currVal_38;
         }
     };
     View_GithubIssuesComponent8.prototype.destroyInternal = function () {
-        this._vc_20.destroyNestedViews();
         this._vc_22.destroyNestedViews();
+        this._vc_24.destroyNestedViews();
     };
     View_GithubIssuesComponent8.prototype.visitRootNodesInternal = function (cb, ctx) {
         cb(this._el_0, ctx);
     };
     View_GithubIssuesComponent8.prototype.createEmbeddedViewInternal = function (nodeIndex) {
-        if ((nodeIndex == 20)) {
-            return new View_GithubIssuesComponent9(this.viewUtils, this, 20, this._anchor_20, this._vc_20);
-        }
         if ((nodeIndex == 22)) {
-            return new View_GithubIssuesComponent10(this.viewUtils, this, 22, this._anchor_22, this._vc_22);
+            return new View_GithubIssuesComponent9(this.viewUtils, this, 22, this._anchor_22, this._vc_22);
+        }
+        if ((nodeIndex == 24)) {
+            return new View_GithubIssuesComponent10(this.viewUtils, this, 24, this._anchor_24, this._vc_24);
         }
         return null;
     };
@@ -5189,7 +5199,7 @@ var View_GithubIssuesComponent10 = (function (_super) {
  * @suppress {suspiciousCode,uselessCode,missingProperties}
  */
 /* tslint:disable */
-var styles = ['.github-issue[_ngcontent-%COMP%] {\n  list-style: none; }\n\n.predefined-queries[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%; }\n\n.search-form[_ngcontent-%COMP%] {\n  position: relative; }\n  .search-form[_ngcontent-%COMP%]   .search-icon[_ngcontent-%COMP%] {\n    color: #ccc;\n    position: absolute;\n    top: 9px;\n    left: 8px; }\n  .search-form[_ngcontent-%COMP%]   .search-count[_ngcontent-%COMP%] {\n    color: #aaa;\n    position: absolute;\n    height: 30px;\n    top: 6px;\n    left: 31px; }\n  .search-form[_ngcontent-%COMP%]   .search-input[_ngcontent-%COMP%] {\n    padding-left: 30px; }\n\n.the-issue[_ngcontent-%COMP%] {\n  border: 1px solid gray;\n  border-radius: 4px;\n  display: block;\n  padding: 0.5rem;\n  position: fixed;\n  margin-right: 4px;\n  background-color: rgba(255, 255, 255, 0.95);\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);\n  max-width: 640px; }\n  .the-issue[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%], .the-issue[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\n    font-weight: bold; }\n  .the-issue[_ngcontent-%COMP%]   .number[_ngcontent-%COMP%] {\n    color: #aaa; }\n  .the-issue[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%] {\n    border: 1px solid #ddd;\n    padding: 15px;\n    border-radius: 3px; }\n\n.comment-body[_ngcontent-%COMP%] {\n  width: 100%;\n  overflow: visible;\n  font-size: 14px; }'];
+var styles = ['.github-issue[_ngcontent-%COMP%] {\n  list-style: none; }\n\n.predefined-queries[_ngcontent-%COMP%]   button[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%; }\n\n.search-form[_ngcontent-%COMP%] {\n  position: relative; }\n  .search-form[_ngcontent-%COMP%]   .search-icon[_ngcontent-%COMP%] {\n    color: #ccc;\n    position: absolute;\n    top: 9px;\n    left: 8px; }\n  .search-form[_ngcontent-%COMP%]   .search-count[_ngcontent-%COMP%] {\n    color: #aaa;\n    position: absolute;\n    height: 30px;\n    top: 6px;\n    left: 31px; }\n  .search-form[_ngcontent-%COMP%]   .search-input[_ngcontent-%COMP%] {\n    padding-left: 30px; }\n\n.container[_ngcontent-%COMP%] {\n  position: fixed;\n  left: 0px;\n  top: 0px;\n  width: auto;\n  margin: 2px; }\n\n.the-issue[_ngcontent-%COMP%] {\n  display: block;\n  max-width: 640px;\n  height: 100%;\n  margin: auto 0;\n  padding: 0.5rem;\n  border: 1px solid gray;\n  border-radius: 4px;\n  background-color: white;\n  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1); }\n  .the-issue[_ngcontent-%COMP%]   .title[_ngcontent-%COMP%], .the-issue[_ngcontent-%COMP%]   .author[_ngcontent-%COMP%] {\n    font-weight: bold; }\n  .the-issue[_ngcontent-%COMP%]   .number[_ngcontent-%COMP%] {\n    color: #aaa; }\n  .the-issue[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%] {\n    border: 1px solid #ddd;\n    padding: 15px;\n    border-radius: 3px; }\n  .the-issue[_ngcontent-%COMP%]   .meta[_ngcontent-%COMP%] {\n    margin: 2px 0;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    .the-issue[_ngcontent-%COMP%]   .meta[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n      margin: 2px; }\n\n.comment-body[_ngcontent-%COMP%] {\n  width: 100%;\n  overflow: visible;\n  font-size: 14px; }'];
 //# sourceMappingURL=/Users/tsakuma/.ghq/github.com/tmtk75/gh-issues/src/github-issues.component.scss.shim.ngstyle.js.map
 
 /***/ },
