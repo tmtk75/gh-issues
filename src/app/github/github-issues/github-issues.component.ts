@@ -60,6 +60,8 @@ export class GithubIssuesComponent implements OnInit {
     this.selectQuery({q, page});
   }
 
+  private debug = false;
+
   query(q: string, page: number): void {
     if (!q) {
       return;
@@ -69,6 +71,9 @@ export class GithubIssuesComponent implements OnInit {
         this.searchResult = result;
         this.error = null;
         this.appService.saveLastQueryParams({q, page});
+        if (this.debug) {
+          this.focusedIssue = this.searchResult.issues[0];
+        }
       }, (err) => this.error = err);
   }
 
@@ -114,18 +119,14 @@ export class GithubIssuesComponent implements OnInit {
   }
 
   onHover(event: any) {
-    const e: MouseEvent = event.event;
     this.focusedIssue = event.issue;
-    this.issueDescStyle = {
-      display: "block",
-      position: "fixed",
-      left: `${e.clientX + 8}px`,
-      top: `${e.clientY - 16}px`,
-    };
+    this.issueDescStyle = {display: "block"};
   }
 
   onHide(e: any) {
-    this.issueDescStyle = {display: "none"};
+    if (!this.debug) {
+      this.issueDescStyle = {display: "none"};
+    }
   }
 
   private focusedIssue;

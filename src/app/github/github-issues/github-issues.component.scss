@@ -32,18 +32,28 @@
   }
 }
 
+.container {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+
+  width: auto;
+  margin: 2px;
+}
+
 .the-issue {
+  
+  display: block;
+  max-width: 640px;
+  height: 100%;
+
+  margin: auto 0;
+  padding: 0.5rem;
+
   border: 1px solid gray;
   border-radius: 4px;
-  display: block;
-  padding: 0.5rem;
-  position: fixed;
-  margin-right: 4px;
-  // top: 200px;
-  // left: 200px;
   background-color: rgba(255, 255, 255, 1.0);
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
-  max-width: 640px;
 
   .title, .author {
     font-weight: bold;
